@@ -31,16 +31,25 @@ def extract_content(input_stream):
 
             if line_count == 10: #jeżeli przez 10 linii nie było 2 pustych-wypisujemy tekst z bufora
                 state = "BODY"
-                print(buffer, end="")
+                try:
+                    print(buffer, end="")
+                except BrokenPipeError:
+                    sys.exit(0)
                 buffer = ""
                 continue
 
         elif state == "BODY":
-            print(cleaned_line) #jezeli jesteśmy w tekście, wypisujemy
+            try:
+                print(cleaned_line) #jezeli jesteśmy w tekście, wypisujemy
+            except BrokenPipeError:
+                sys.exit(0)
 
     #zabezpieczenie przed krótkim tekstem (< 10 linii) bez preambuły
     if state == "PREAMBLE" and buffer != "":
-        print(buffer, end="")
+        try:
+            print(buffer, end="")
+        except BrokenPipeError:
+            sys.exit(0)
 
 def main():
     #polskie znaki
