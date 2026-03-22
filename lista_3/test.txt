@@ -1,0 +1,7 @@
+1331901000.000000	CHEt7z3AzG4gyCNgci	192.168.202.79	50465	192.168.229.251	80	1	HEAD	192.168.229.251	/DEASLog02.nsf	-	Mozilla/5.0	0	0	404	Not Found	-	-	-	(empty)	-	-	-	-	-	-	-
+
+1331901000.010000	8KnDAp2ohlvN6rpiXl	192.168.202.79	50467	192.168.229.251	80	1	HEAD	192.168.229.251	/DEASLog03.nsf	-	Mozilla/5.0	0	0	404	Not Found	-	-	-	(empty)	-	-	-	-	-	-	-
+1331901000.030000	CNTrjn42F3LB58MZH6	192.168.202.79	-	192.168.229.251	80	1	HEAD	192.168.229.251	/DEASLog04.nsf	-	Mozilla/5.0	0	0	404	Not Found	-	-	-	(empty)	-	-	-	-	-	-	-
+100.040000	B1D7mK1PlzKEnEyG03	192.168.202.79	50471	192.168.229.251	-	1	HEAD	192.168.229.251	/DEASLog05.nsf	-	Mozilla/5.0	0	0	404	Not Found	-	-	-	(empty)	-	-	-	-	-	-	-
+	
+1901005.000000	EXTRA_LOG_01	10.0.0.1	1234	10.0.0.2	443	1	GET	google.com	/index.html?.pl.jpg.php	-	Chrome	100	200	200	OK	-	-	-	-	-	-	-	-	-	-	-
