@@ -29,6 +29,8 @@ def zad3_i():
             else:
                 sentence += char
 
+    if answer == "":
+        raise Exception("Nie ma takich zdan!")
     return answer
 
 def main():

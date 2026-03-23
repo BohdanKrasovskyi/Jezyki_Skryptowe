@@ -7,9 +7,12 @@ def zad3_c():
     sentences = 0
     sentences_with_proper_noun = 0
     sentence = ""
+    has_data = False
 
     for line in sys.stdin:
         line = remove_extra_spaces(line)
+        if line != "":
+            has_data = True
         if line == "" and sentence != "":
             sentences += 1
             if is_sentence_with_proper_noun(sentence):
@@ -25,8 +28,10 @@ def zad3_c():
             else:
                 sentence += char
 
+    if not has_data:
+        raise Exception("No data found")
     if sentences == 0:
-        raise Exception("No sentences was found")
+        raise Exception("Nie ma zdan !")
 
     return float(sentences_with_proper_noun) / float(sentences) * 100
 

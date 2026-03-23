@@ -19,13 +19,13 @@ def zad3_e():
             if char == '.' or char == '?' or char == '!' or char == "…":
                 if if_two_words_starts_with_same_letter(sentence) != True and len(sentence) > max_length:
                     max_length = len(sentence)
-                    answer_sentence = sentence
+                    answer_sentence = sentence + char
                 sentence = ""
             else:
                 sentence += char
 
     if answer_sentence == "":
-        raise Exception("No sentences was found")
+        raise Exception("Nie ma takich zdan!")
 
     return answer_sentence
 

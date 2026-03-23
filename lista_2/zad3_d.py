@@ -6,9 +6,12 @@ def zad3_d():
     max_length = 0
     answer_sentence = ""
     sentence = ""
+
+    has_data = False
     for line in sys.stdin:
         line = remove_extra_spaces(line)
-
+        if line != "":
+            has_data = True
         if line == "" and sentence != "":
             if len(sentence) > max_length:
                 max_length = len(sentence)
@@ -19,13 +22,15 @@ def zad3_d():
             if char == '.' or char == '?' or char == '!' or char == "…":
                 if len(sentence) > max_length:
                     max_length = len(sentence)
-                    answer_sentence = sentence
+                    answer_sentence = sentence + char
                 sentence = ""
             else:
                 sentence += char
 
+    if not has_data:
+        raise Exception("No data found")
     if answer_sentence == "":
-        raise Exception("No sentences was found")
+        raise Exception("Nie ma takich zdan!")
 
     return answer_sentence
 

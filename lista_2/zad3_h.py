@@ -8,13 +8,16 @@ def zad3_h():
     answer = ""
     for line in sys.stdin:
         line = remove_extra_spaces(line)
-
+        if line == "" and sentence != "":
+            sentence = ""
         for char in line:
             if char == '.' or char == "…":
                 sentence = ""
-            elif char == '!' or char == '?' and sentence != "":
-                answer += sentence + char + '\n'
-                sentence = ""
+            elif (char == '!' or char == '?'):
+                sentence = remove_extra_spaces(sentence)
+                if sentence != "":
+                    answer += sentence + char + '\n'
+                    sentence = ""
             else:
                 sentence += char
 

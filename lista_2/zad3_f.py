@@ -16,12 +16,12 @@ def zad3_f():
         for char in line:
             if char == '.' or char == '?' or char == '!' or char == "…":
                 if count_comas_in_sentence(sentence) >= MINIMUM_COMAS:
-                    return sentence
+                    return sentence + char
                 sentence = ""
             else:
                 sentence += char
 
-    return ""
+    raise Exception("Nie ma takich zdan!")
 
 def main():
     sys.stdin.reconfigure(encoding='utf-8')
