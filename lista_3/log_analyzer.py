@@ -31,8 +31,8 @@ def read_log(input_stream):
         if not line.strip(): #jezeli linia jest pusta
             continue
         else:
-            line = line.split("\t")
-            line = [None if field in "-" else field for field in line] #jezeli pole to "-" to None
+            line = line.rstrip('\r\n').split("\t")
+            line = [None if field == "-" else field for field in line]
 
         my_tuple = (
             datetime.datetime.fromtimestamp (float(line[0])),
@@ -141,8 +141,15 @@ def get_unique_methods(log):
 
 #ZAD9
 def get_entries_in_time_range(log, start, end):
-    time_of_start = datetime.datetime.fromtimestamp(start)
-    time_of_end = datetime.datetime.fromtimestamp(end)
+    if start > end:
+        print(f"Błąd: Czas początkowy ({start}) jest późniejszy niż czas końcowy ({end})!")
+        return []
+    try:
+        time_of_start = datetime.datetime.fromtimestamp(start)
+        time_of_end = datetime.datetime.fromtimestamp(end)
+    except (TypeError, ValueError, OverflowError):
+        print(f"Błąd: Nieprawidłowy format czasu!")
+        return []
     return [
         entry for entry in log
         if entry[Log_Idxs.TS] is not None and time_of_start <= entry[Log_Idxs.TS] < time_of_end
