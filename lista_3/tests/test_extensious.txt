@@ -1,0 +1,8 @@
+500.000000	uid_40	192.168.5.1	1111	10.0.0.5	80	-	GET	media.com	/photo.jpg	-	-	-	-	200
+500.010000	uid_40	192.168.5.1	1111	10.0.0.5	80	-	GET	media.com	/banner.jpg?size=large	-	-	-	-	200
+500.020000	uid_41	192.168.5.2	2222	10.0.0.5	80	-	GET	media.com	/index.html	-	-	-	-	200
+500.030000	uid_41	192.168.5.2	2222	10.0.0.5	80	-	GET	media.com	/app.js	-	-	-	-	200
+500.040000	uid_42	192.168.5.3	3333	10.0.0.5	80	-	GET	media.com	/style.css	-	-	-	-	200
+500.050000	uid_42	192.168.5.3	3333	10.0.0.5	80	-	GET	media.com	/data.json	-	-	-	-	200
+500.060000	uid_40	192.168.5.1	1111	10.0.0.5	80	-	GET	media.com	/video.mp4	-	-	-	-	200
+500.070000	uid_43	192.168.5.4	4444	10.0.0.5	80	-	GET	media.com	/noextension	-	-	-	-	200

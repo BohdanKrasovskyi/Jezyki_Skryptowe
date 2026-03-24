@@ -1,0 +1,9 @@
+100.000000	uid_01	192.168.1.1	1234	10.0.0.1	80	unused	GET	google.com	/index.html	-	-	-	-	200
+100.010000	uid_02	192.168.1.2	-	10.0.0.1	-	unused	POST	example.com	/upload?id=1	-	-	-	-	-
+
+100.020000	uid_03	10.0.0.5	4444	10.0.0.1	443	unused	PROPFIND	google.com	/missing.jpg?width=100	-	-	-	-	404
+100.030000	uid_04	192.168.1.1	5555	10.0.0.1	80	unused	GET	google.com	/api/data/	-	-	-	-	500
+100.040000	uid_05	-	6666	10.0.0.1	80	unused	POST	hacker.com	/shell.php?cmd=ls&x=.jpg	-	-	-	-	403
+100.049999	uid_06	10.1.1.1	7777	10.0.0.1	80	unused	-	example.com	-	-	-	-	-	400
+100.050000	uid_07	10.1.1.2	8888	10.0.0.1	80	unused	GET	example.com	/archive.tar.GZ	-	-	-	-	200
+100.060000	uid_08	192.168.1.1	9999	10.0.0.1	80	unused	HEAD	example.com	/index.html	-	-	-	-	200

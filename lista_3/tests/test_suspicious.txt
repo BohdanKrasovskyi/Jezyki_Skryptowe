@@ -1,0 +1,8 @@
+400.000000	uid_30	10.0.0.99	9999	10.0.0.4	80	-	GET	target.com	/page1.html	-	-	-	-	404
+400.001000	uid_30	10.0.0.99	9999	10.0.0.4	80	-	GET	target.com	/page2.html	-	-	-	-	404
+400.002000	uid_30	10.0.0.99	9999	10.0.0.4	80	-	GET	target.com	/page3.html	-	-	-	-	404
+400.003000	uid_30	10.0.0.99	9999	10.0.0.4	80	-	GET	target.com	/admin	-	-	-	-	404
+400.004000	uid_30	10.0.0.99	9999	10.0.0.4	80	-	GET	target.com	/shell.php	-	-	-	-	404
+400.005000	uid_31	192.168.4.1	1111	10.0.0.4	80	-	GET	target.com	/index.html	-	-	-	-	200
+400.006000	uid_30	10.0.0.99	9999	10.0.0.4	80	-	POST	target.com	/login	-	-	-	-	401
+400.007000	uid_30	10.0.0.99	9999	10.0.0.4	80	-	GET	target.com	/config	-	-	-	-	404
