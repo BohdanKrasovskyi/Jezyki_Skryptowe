@@ -4,7 +4,7 @@ from enum import IntEnum
 import datetime
 import ipaddress
 from http import HTTPStatus #statusy http do filtrowania listy
-from collections import Counter
+from collections import Counter, defaultdict
 import os
 
 class Log_Idxs(IntEnum):
@@ -141,18 +141,18 @@ def get_unique_methods(log):
 
 #ZAD9
 def get_entries_in_time_range(log, start, end):
+    if isinstance(start, (int, float)):
+        start = datetime.datetime.fromtimestamp(start)
+    if isinstance(end, (int, float)):
+        end = datetime.datetime.fromtimestamp(end)
+
     if start > end:
         print(f"Błąd: Czas początkowy ({start}) jest późniejszy niż czas końcowy ({end})!")
         return []
-    try:
-        time_of_start = datetime.datetime.fromtimestamp(start)
-        time_of_end = datetime.datetime.fromtimestamp(end)
-    except (TypeError, ValueError, OverflowError):
-        print(f"Błąd: Nieprawidłowy format czasu!")
-        return []
+
     return [
         entry for entry in log
-        if entry[Log_Idxs.TS] is not None and time_of_start <= entry[Log_Idxs.TS] < time_of_end
+        if entry[Log_Idxs.TS] is not None and start <= entry[Log_Idxs.TS] < end
     ]
 
 #ZAD10
@@ -179,6 +179,174 @@ def count_status_classes(log):
                 status_counts[group_key] += 1 #zliczamy statusy
     return status_counts
 
+#ZAD13
+def entry_to_dict(entry):
+    if entry is None:
+        return None
+
+    #Musi byc 10 elementow
+    entry = list(entry) + [None] * (10 - len(entry))
+
+    return {
+        "ts": entry[Log_Idxs.TS],
+        "uid": entry[Log_Idxs.UID],
+        "orig_h": entry[Log_Idxs.ORIG_H],
+        "orig_p": entry[Log_Idxs.ORIG_P],
+        "resp_h": entry[Log_Idxs.RESP_H],
+        "resp_p": entry[Log_Idxs.RESP_P],
+        "method": entry[Log_Idxs.METHOD],
+        "host": entry[Log_Idxs.HOST],
+        "uri": entry[Log_Idxs.URI],
+        "status": entry[Log_Idxs.STATUS],
+    }
+
+#ZAD14
+def log_to_dict(log):
+    session_log = {}
+    for entry in log:
+        entry_dict = entry_to_dict(entry)
+        uid = entry_dict.get("uid", "unknown")
+
+        if uid not in session_log:
+            session_log[uid] = []
+
+        entry_dict.pop("uid", None)
+        session_log[uid].append(entry_dict)
+
+    return session_log
+
+#ZAD15
+def print_dict_entry_dates(log_dict):
+    for uid, entries in log_dict.items():
+        if not entries:
+            continue
+
+        ips_and_hosts = set()
+        first_timestamp = entries[0].get("ts")
+        last_timestamp = entries[0].get("ts")
+        method_counts = Counter()
+        count_2xx = 0
+
+        for e in entries:
+            if e.get("orig_h"):
+                ips_and_hosts.add(e["orig_h"])
+            if e.get("host"):
+                ips_and_hosts.add(e["host"])
+
+            timestamp = e.get("ts")
+            if timestamp is not None:
+                if timestamp < first_timestamp:
+                    first_timestamp = timestamp
+                if timestamp > last_timestamp:
+                    last_timestamp = timestamp
+
+            method = e.get("method")
+            if method:
+                method_counts[method] += 1
+
+            status = e.get("status")
+            try:
+                valid_status = HTTPStatus(status)  # rzuca ValueError
+                if status and 200 <= status < 300:
+                    count_2xx += 1
+            except (TypeError, ValueError):
+                print(f"Błąd: '{status}' nie jest poprawnym statusem HTTP!")
+
+        num_requests = len(entries)
+
+        method_percent = {m : f"{(c / num_requests) * 100:.2f}%" for m, c in method_counts.items()}
+        if num_requests > 0:
+            ratio_2xx = f"{(count_2xx / num_requests) * 100:.2f}%"
+        else:
+            ratio_2xx = "Nie ma żadnych żądań"
+
+        print(f"UID: {uid}")
+        print(f"Adresy IP / hosty: {', '.join(ips_and_hosts)}")
+        print(f"Liczba żądań: {num_requests}")
+        print(f"Zakres dat: {first_timestamp} — {last_timestamp}")
+        print(f"Procentowy udział metod HTTP: {method_percent}")
+        print(f"Stosunek liczby kodów 2xx do wszystkich: {ratio_2xx}")
+        print("-"*50)
+
+#ZAD16
+def most_active_session(log_dict):
+    most_active_uid = None
+    max_requests = 0
+    for uid, entries in log_dict.items():
+        if len(entries) > max_requests:
+            most_active_uid = uid
+            max_requests = len(entries)
+
+    return most_active_uid
+
+#ZAD17
+def get_session_paths(log):
+    session_paths = {}
+    for entry in log:
+        uid = entry[Log_Idxs.UID]
+        uri = entry[Log_Idxs.URI]
+
+        if uid is None or uri is None:
+            continue
+
+        if uid not in session_paths:
+            session_paths[uid] = []
+        session_paths[uid].append(uri)
+
+    return session_paths
+
+#ZAD18
+def detect_sus(log, threshold, procent404 = 0.3, second_between_requests = 1, procent_of_fast_requests = 0.3):
+    ip_data = dict()
+
+    for entry in log:
+        ip = entry[Log_Idxs.ORIG_H]
+        status = entry[Log_Idxs.STATUS]
+        ts = entry[Log_Idxs.TS]
+
+        if not ip:
+            continue
+
+        try:
+            ipaddress.ip_address(ip) #rzuca ValueError
+        except ValueError:
+            print(f"Błąd: '{ip}' nie jest poprawnym adresem IP")
+
+        if ip not in ip_data:
+            ip_data[ip] = {"count": 0,"errors_404": 0,"timestamps": []}
+
+        ip_data[ip]["count"] += 1
+
+        if status == 404:
+            ip_data[ip]["errors_404"] += 1
+
+        if ts:
+            ip_data[ip]["timestamps"].append(ts)
+
+    suspicious_ips = []
+    for ip, data in ip_data.items():
+        if data["count"] >= threshold:
+            suspicious_ips.append(ip)
+            continue
+
+        if data["errors_404"] > data["count"] * procent404:
+            suspicious_ips.append(ip)
+            continue
+
+        fast_requests = 0
+        times = sorted(data["timestamps"])
+        for i in range(1, len(times)):
+            delta = (times[i] - times[i - 1]).total_seconds()
+            if delta < second_between_requests:
+                fast_requests += 1
+
+        if fast_requests > procent_of_fast_requests * data["count"]:
+            suspicious_ips.append(ip)
+
+    return suspicious_ips
+
+
+
 #ZAD19
 def get_extension_stats(log):
     extensions = []
@@ -192,6 +360,52 @@ def get_extension_stats(log):
                 clean_ext = ext[1:].lower() #standaryzujemy
                 extensions.append(clean_ext)
     return dict(Counter(extensions))
+
+#ZAD20
+def analyze_log(log, how_many_stats = 5):
+    ip_counts = Counter()
+    uri_counts = Counter()
+    method_counts = Counter()
+    error_counts = 0
+    status_classes = {"2xx" : 0, "3xx" : 0, "4xx" : 0, "5xx" : 0}
+
+    for entry in log:
+        ip = entry[Log_Idxs.ORIG_H]
+        uri = entry[Log_Idxs.URI]
+        method = entry[Log_Idxs.METHOD]
+        status = entry[Log_Idxs.STATUS]
+        if ip is not None:
+            try:
+                ipaddress.ip_address(ip)
+                ip_counts[ip] += 1
+            except ValueError:
+                print(f"Błąd: '{ip}' nie jest poprawnym adresem IP")
+        if uri is not None:
+            uri_counts[uri] += 1
+        if method is not None:
+            method_counts[method] += 1
+        if status is not None:
+            try:
+                valid_status = HTTPStatus(status)
+                if status >= 400:
+                    error_counts += 1
+                group = f"{status // 100}xx"
+                if group in status_classes:
+                    status_classes[group] += 1
+            except ValueError:
+                print(f"Błąd: '{status}' nie jest poprawnym statusem HTTP!")
+
+    result = {
+            "top_ips" : ip_counts.most_common(how_many_stats),
+            "top_uris" : uri_counts.most_common(how_many_stats),
+            "method_distribution" : dict(method_counts),
+            "error_count" : error_counts,
+            "status_classes" : status_classes,
+            "unique_ips" : len(ip_counts),
+            "unique_uris" : len(uri_counts),
+        }
+
+    return result
 
 def main():
     read_log(sys.stdin)
