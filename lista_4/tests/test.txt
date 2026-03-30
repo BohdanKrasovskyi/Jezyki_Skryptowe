@@ -1,0 +1,10 @@
+To jest plik testowy.
+Polskie znaki: żółć ąś ęóź.
+
+Liczby: 123 456 7890.
+Znaki specjalne: !@#$%^&*()_+{}|:"<->?
+
+Jest JEst JEST! jest! .,jest: jest
+Tabulator	zamiast	spacji.
+      kilka spacji
+Koniec pliku.
