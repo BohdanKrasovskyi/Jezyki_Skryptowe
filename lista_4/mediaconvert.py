@@ -68,25 +68,25 @@ def main():
         sys.exit(0)
 
     for filepath, file_type in media_files:
-        output_path = make_output_filename(filepath, args.format, output_dir)
-
-        print(f"[INFO] Konwertuję: {filepath} → {output_path}")
-
         if file_type == "video_audio":
-            if fmt not in VIDEO_AUDIO_EXTENSIONS:
-                print(f"[WARNING] Brak konwersji z video/audio do tego formatu. Pomijam plik: {filepath}")
-                success = False
-                tool_used = "-"
-            else:
-                success = convert_with_ffmpeg(filepath, output_path)
-                tool_used = "ffmpeg"
+            if fmt == ".-" or fmt in VIDEO_AUDIO_EXTENSIONS:
+                fmt = ".jpg"
 
+            output_path = make_output_filename(filepath, fmt, output_dir)
+            print(f"[INFO] Konwertuję: {filepath} → {output_path}")
+
+            success = convert_with_ffmpeg(filepath, output_path)
+            tool_used = "ffmpeg"
         else:
             if fmt not in IMAGE_EXTENSIONS:
                 print(f"[WARNING] Brak konwersji z image do tego formatu. Pomijam plik: {filepath}")
                 success = False
                 tool_used = "-"
+                output_path = None
             else:
+                output_path = make_output_filename(filepath, fmt, output_dir)
+                print(f"[INFO] Konwertuję: {filepath} → {output_path}")
+
                 success = convert_with_magick(filepath, output_path)
                 tool_used = "magick"
 
