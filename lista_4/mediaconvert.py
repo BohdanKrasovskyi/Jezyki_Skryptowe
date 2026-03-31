@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import argparse
 import subprocess
 from datetime import datetime
 
@@ -8,7 +9,7 @@ from utils import *
 
 
 def convert_with_ffmpeg(input_path, output_path):
-    cmd = ["ffmpeg","-y","-loglevel", "error","-i", input_path, output_path]
+    cmd = ["ffmpeg", "-y", "-loglevel", "error", "-i", input_path, output_path]
     print(f"[INFO] Uruchamiam: {' '.join(cmd)}")
 
     result = subprocess.run(cmd, capture_output=True, text=True)
@@ -24,11 +25,7 @@ def convert_with_magick(input_path, output_path):
     cmd = ["magick", input_path, output_path]
     print(f"[INFO] Uruchamiam: {' '.join(cmd)}")
 
-    result = 1
-    try:
-        result = subprocess.run(cmd, capture_output=True, text=True)
-    except subprocess.CalledProcessError as e:
-        print(e)
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     if result.returncode != 0:
         print(f"[ERROR] Błąd magick: {result.stderr}")
@@ -62,8 +59,8 @@ def main():
     media_files = find_media_files(args.directory)
     fmt = f".{args.format.lower()}"
 
-    if fmt not in VIDEO_AUDIO_EXTENSIONS and fmt not in IMAGE_EXTENSIONS and fmt != ".-":
-        print(f"[ERROR] Format nie jest dozwolony - {args.format}")
+    if fmt not in VIDEO_AUDIO_EXTENSIONS and fmt not in IMAGE_EXTENSIONS:
+        print(f"[ERROR] Nie podano formatu lub format nie jest dozwolony - {args.format}")
         sys.exit(1)
 
     if not media_files:
@@ -71,29 +68,25 @@ def main():
         sys.exit(0)
 
     for filepath, file_type in media_files:
+        output_path = make_output_filename(filepath, args.format, output_dir)
+
+        print(f"[INFO] Konwertuję: {filepath} → {output_path}")
 
         if file_type == "video_audio":
-            if fmt == ".-" or fmt in IMAGE_EXTENSIONS:
-                fmt = ".mp4"
             if fmt not in VIDEO_AUDIO_EXTENSIONS:
                 print(f"[WARNING] Brak konwersji z video/audio do tego formatu. Pomijam plik: {filepath}")
                 success = False
                 tool_used = "-"
             else:
-                output_path = make_output_filename(filepath, fmt, output_dir)
-                print(f"[INFO] Konwertuję: {filepath} → {output_path}")
                 success = convert_with_ffmpeg(filepath, output_path)
                 tool_used = "ffmpeg"
+
         else:
-            if fmt == ".-" or fmt in VIDEO_AUDIO_EXTENSIONS:
-                fmt = ".jpg"
             if fmt not in IMAGE_EXTENSIONS:
                 print(f"[WARNING] Brak konwersji z image do tego formatu. Pomijam plik: {filepath}")
                 success = False
                 tool_used = "-"
             else:
-                output_path = make_output_filename(filepath, fmt, output_dir)
-                print(f"[INFO] Konwertuję: {filepath} → {output_path}")
                 success = convert_with_magick(filepath, output_path)
                 tool_used = "magick"
 
