@@ -1,0 +1,18 @@
+[
+  {
+    "datetime": "2026-03-31T10:59:15.240363",
+    "source": "mediaconvert_test/test1\\123.webp",
+    "output_format": "tiff",
+    "output_path": "C:\\Users\\Bohdan\\PycharmProjects\\Jezyki_Skryptowe\\lista_4\\converted\\20260331-105914-123.tiff",
+    "tool": "magick",
+    "success": true
+  },
+  {
+    "datetime": "2026-03-31T10:59:15.259363",
+    "source": "mediaconvert_test/test1\\download.webp",
+    "output_format": "tiff",
+    "output_path": "C:\\Users\\Bohdan\\PycharmProjects\\Jezyki_Skryptowe\\lista_4\\converted\\20260331-105915-download.tiff",
+    "tool": "magick",
+    "success": true
+  }
+]

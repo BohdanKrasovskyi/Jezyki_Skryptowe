@@ -1,5 +1,6 @@
 import os
 import sys
+import argparse
 
 VIDEO_AUDIO_EXTENSIONS = {".mp4", ".mkv", ".avi", ".mov", ".mp3", ".wav", ".flac", ".ogg"}
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"}
