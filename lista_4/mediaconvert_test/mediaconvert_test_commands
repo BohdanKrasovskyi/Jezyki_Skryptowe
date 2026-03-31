@@ -1,0 +1,7 @@
+$env:CONVERTED_DIR="C:\temp\converted"
+
+python mediaconvert.py mediaconvert_test/test1 --format 'jpg'
+
+python mediaconvert.py mediaconvert_test/test2 --format 'mkv'
+
+python mediaconvert.py mediaconvert_test/test3
