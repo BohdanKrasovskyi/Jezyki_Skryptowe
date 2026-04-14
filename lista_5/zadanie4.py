@@ -62,14 +62,15 @@ def task_e (stations_data : dict):
     mob_pattern = re.compile(r"MOB$")
 
     all_true = True
+
     mob_found = 0
 
     for code, data in stations_data.items():
         if mob_pattern.search(code):
             mob_found += 1
-            type = data.get("Rodzaj stacji", "")
-            if not re.search(r"(?i)mobilna", type):
-                logging.warning(f"Zad 4E: Stacja {code} ma rodzaj '{type}', a powinna być mobilna!")
+            station_type = data.get("Rodzaj stacji", "")
+            if not re.search(r"(?i)mobilna", station_type):
+                logging.warning(f"Zad 4E: Stacja {code} ma rodzaj '{station_type}', a powinna być mobilna!")
                 all_true = False
 
     if mob_found == 0:
@@ -78,6 +79,8 @@ def task_e (stations_data : dict):
         print(f"Zweryfikowano pomyślnie. Wszystkie znalezione stacje ({mob_found}) to stacje mobilne.")
     else:
         print("Weryfikacja nie powiodła się. Niektóre stacje MOB nie są mobilne.")
+
+    return all_true
 
 
 def task_f(stations_data: dict):
@@ -100,7 +103,7 @@ def task_g(stations_data: dict):
     matching_locations = []
 
     for data in stations_data.values():
-        address = data.get("Nazwa stacji", "")
+        address = data.get("Adres", "")
         if pattern.search(address):
             matching_locations.append(address)
 
