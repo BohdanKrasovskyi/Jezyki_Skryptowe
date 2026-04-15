@@ -7,6 +7,7 @@ def task_a(stations_data : dict):
     data_pattern = re.compile(r"^\d{4}-\d{2}-\d{2}$")
     dates = []
 
+
     for data in stations_data.values():
         start = data.get("Data uruchomienia", "").strip()
         end = data.get("Data zamknięcia", "").strip()
