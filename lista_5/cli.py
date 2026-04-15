@@ -42,7 +42,6 @@ def setup_logging() -> None:
     stdout_handler.addFilter(_MaxLevelFilter(logging.WARNING))
     stdout_handler.setFormatter(fmt)
 
-    # stderr: ERROR .. CRITICAL
     stderr_handler = logging.StreamHandler(sys.stderr)
     stderr_handler.setLevel(logging.ERROR)
     stderr_handler.setFormatter(fmt)
@@ -352,7 +351,6 @@ def main() -> None:
     stations_data = parse_stations(args.stations)
 
     if not args.data.exists():
-        # Zad 6d – critical error: directory not found
         logging.error(f"Data directory not found: {args.data}")
         sys.exit(1)
 
