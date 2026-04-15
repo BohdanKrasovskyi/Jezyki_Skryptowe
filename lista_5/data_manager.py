@@ -56,13 +56,6 @@ def parse_measurements(path: Path) -> dict:
                 pass
 
             else: #właściwe pomiary
-                raw_time = row[0].strip()
-                # Normalizacja formatu daty: MM/DD/YY HH:MM -> YYYY-MM-DD HH:MM
-                try:
-                    from datetime import datetime as _dt
-                    time_of_measurement = _dt.strptime(raw_time, "%m/%d/%y %H:%M").strftime("%Y-%m-%d %H:%M")
-                except ValueError:
-                    time_of_measurement = raw_time
                 values = row[1:]
 
                 for col_idx, val in enumerate(values):
@@ -91,7 +84,6 @@ def parse_measurements(path: Path) -> dict:
 def group_measurement_files_by_key(path: Path) -> dict:
 
     grouped_files = {}
-    pattern = re.compile(r"^(\d{4})_([a-zA-Z0-9()_.]+)_([a-zA-Z0-9]+)\.csv$") #(4cyfry)_(litery/cyfry/_/()/.)_(litery/cyfry).csv
 
     for file_path in path.iterdir():
         if file_path.is_file():
