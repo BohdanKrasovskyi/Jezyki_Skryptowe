@@ -5,7 +5,7 @@ from uuid import UUID
 from typing import List
 
 class TimeSeries:
-    def __init__(self, name_of_indicator : str, code_of_station : str, averaging_time : float,
+    def __init__(self, name_of_indicator : str, code_of_station : str, averaging_time : str,
                 list_of_dates : List[date], measurement : List[float | None],
                 unit_of_measurement : str) -> None:
         self.name_of_indicator = name_of_indicator

@@ -4,9 +4,7 @@ from pathlib import Path
 import re
 
 
-#logging.basicConfig(level=logging.DEBUG)
 
-#Do zad6
 def log_line_bytes(file):
     for line in file:
         size = len(line.encode('utf-8')) #zamianiemy na bajty i liczymy len()
