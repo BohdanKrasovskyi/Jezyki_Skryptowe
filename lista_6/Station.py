@@ -2,7 +2,7 @@ import datetime
 
 class Station:
     def __init__(self, code : str, name_of_station : str,
-                 address : int, type_of_station : str, date_of_start : datetime.date,
+                 address : str, type_of_station : str, date_of_start : datetime.date,
                  date_of_end : datetime.date) -> None:
         self.code = code
         self.name_of_station = name_of_station
