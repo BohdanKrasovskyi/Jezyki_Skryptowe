@@ -7,6 +7,7 @@ def task_a(stations_data : dict):
     data_pattern = re.compile(r"^\d{4}-\d{2}-\d{2}$")
     dates = []
 
+
     for data in stations_data.values():
         start = data.get("Data uruchomienia", "").strip()
         end = data.get("Data zamknięcia", "").strip()
@@ -67,10 +68,6 @@ def task_e (stations_data : dict):
     for code, data in stations_data.items():
         if mob_pattern.search(code):
             mob_found += 1
-            type = data.get("Rodzaj stacji", "")
-            if not re.search(r"(?i)mobilna", type):
-                logging.warning(f"Zad 4E: Stacja {code} ma rodzaj '{type}', a powinna być mobilna!")
-                all_true = False
 
     if mob_found == 0:
         print("Nie znaleziono żadnych stacji kończących się na MOB.")
@@ -100,7 +97,6 @@ def task_g(stations_data: dict):
     matching_locations = []
 
     for data in stations_data.values():
-        address = data.get("Nazwa stacji", "")
         if pattern.search(address):
             matching_locations.append(address)
 

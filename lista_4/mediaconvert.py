@@ -9,7 +9,7 @@ from utils import *
 
 
 def convert_with_ffmpeg(input_path, output_path):
-    cmd = ["ffmpeg","-y","-loglevel", "error","-i", input_path, output_path]
+    cmd = ["ffmpeg", "-y", "-loglevel", "error", "-i", input_path, output_path]
     print(f"[INFO] Uruchamiam: {' '.join(cmd)}")
 
     result = subprocess.run(cmd, capture_output=True, text=True)
@@ -80,6 +80,7 @@ def main():
             else:
                 success = convert_with_ffmpeg(filepath, output_path)
                 tool_used = "ffmpeg"
+
         else:
             if fmt not in IMAGE_EXTENSIONS:
                 print(f"[WARNING] Brak konwersji z image do tego formatu. Pomijam plik: {filepath}")
