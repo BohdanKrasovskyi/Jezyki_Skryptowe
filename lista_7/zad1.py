@@ -1,24 +1,17 @@
 #a
-from cmath import sqrt
-
-
 def liczba(l):
     return 0 if not l else (l[0] if l[0] > 0 else 0) + liczba(l[1:])
 
 #b
 def median(l):
-    l.sort()
-    return 0 if not l else (l[len(l) // 2] if len(l) % 2 == 1 else (l[len(l) // 2] + l[len(l) // 2 - 1]) / 2)
+    s = sorted(l)
+    return 0 if not s else (s[len(s) // 2] if len(s) % 2 == 1 else (s[len(s) // 2] + s[len(s) // 2 - 1]) / 2)
 
 #c
 def pierwiastek(x, epsilon):
-    if x < 0:
-        print("ERROR: Cannot square the negative number!")
-        return None
-
     def helper(y):
         return y if abs(y ** 2 - x) < epsilon else helper((y + x/y) / 2)
-    return helper(1.0)
+    return None if x < 0 else helper(1.0)
 
 #d
 def make_alpha_dict(text):
