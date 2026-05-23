@@ -34,7 +34,25 @@ class TimeSeries:
             return None
         return max(measurement_clear), min(measurement_clear)
 
-    def __getitem__(self, val) -> tuple[date, float | None] | List[tuple[date, float | None]]:
+    @property
+    def stddev(self) -> float | None:
+        if not self.list_of_dates:
+            return None
+        measurements_clear = [x for x in self.measurement if x is not None]
+        if len(measurements_clear) < 2:
+            return None
+        return statistics.stdev(measurements_clear)
+
+    @property
+    def mean(self) -> float | None:
+        if not self.list_of_dates:
+            return None
+        measurements_clear = [x for x in self.measurement if x is not None]
+        if not measurements_clear:
+            return None
+        return statistics.mean(measurements_clear)
+
+    def __getitem__(self, val : int | slice | datetime.date) -> tuple[date, float | None] | List[tuple[date, float | None]]:
         if isinstance(val, slice):
             start, stop, step = val.start, val.stop, val.step
             if step is None:

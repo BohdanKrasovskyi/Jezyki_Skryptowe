@@ -12,7 +12,7 @@ class SeriesValidator(ABC):
 
 class MeanValidator(SeriesValidator):
 
-    def __init__(self, threshold: float):
+    def __init__(self, threshold: float) -> None:
         self.threshold = threshold
 
     def analyze(self, series: TimeSeries) -> list:
@@ -30,7 +30,7 @@ class MeanValidator(SeriesValidator):
 
 class AnomalyValidator(SeriesValidator):
 
-    def __init__(self, max_value: float):
+    def __init__(self, max_value: float) -> None:
         self.max_value = max_value
 
     def analyze(self, series: TimeSeries) -> list:
@@ -45,7 +45,7 @@ class AnomalyValidator(SeriesValidator):
 
 
 class MissingDataValidator(SeriesValidator):
-    def __init__(self, max_missing_pct: float = 10.0):
+    def __init__(self, max_missing_pct: float = 10.0) -> None:
         self.max_missing_pct = max_missing_pct
 
     def analyze(self, series: TimeSeries) -> list:

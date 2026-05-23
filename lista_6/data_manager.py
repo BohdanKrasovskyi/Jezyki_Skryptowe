@@ -2,7 +2,7 @@ import csv
 import logging
 from pathlib import Path
 import re
-
+from typing import Any
 
 
 def log_line_bytes(file):
@@ -28,9 +28,9 @@ def parse_stations(path: Path) -> dict:
     return stations
 
 
-def parse_measurements(path: Path) -> dict:
+def parse_measurements(path: Path) -> dict[str, list[dict[str, Any]]]:
     logging.info(f"Otwieranie pliku z pomiarami: {path}")
-    measurements = {}
+    measurements : dict[str, list[dict[str, Any]]] = {}
 
     with path.open(encoding="utf-8") as file:
         reader = csv.reader(log_line_bytes(file))

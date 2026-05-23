@@ -17,7 +17,7 @@ class Station:
     def __repr__(self) -> str:
         return f'Station({str(self)})'
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other : object) -> bool:
         if isinstance(other, Station):
             return self.code == other.code
         else:
