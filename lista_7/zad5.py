@@ -33,10 +33,10 @@ def main():
     print("---Brakuje jednego obliczenia---")
     res2 = fib_rec(7)
     print(res2)
-    print("---Wynik juz w pamieci---")
+    print("---Wynik już w pamięci---")
     res3 = fib_rec(6)
     print(res3)
-    print("--- Bledne dane na wejsciu ---")
+    print("--- Błędne dane na wejściu ---")
     print(fib_rec(-1))
 
 if __name__ == "__main__":
