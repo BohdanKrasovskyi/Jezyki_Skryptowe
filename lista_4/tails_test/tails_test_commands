@@ -1,3 +1,0 @@
-python tails.py tails_test/test1
-
-Get-Content tails_test/test1 | python tails.py
