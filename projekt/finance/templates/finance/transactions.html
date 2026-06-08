@@ -1,0 +1,131 @@
+{% extends "finance/base.html" %}
+{% block title %}Transakcje — FinanceApp{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="section-title mb-0">Transakcje</h1>
+  <div class="d-flex gap-2">
+    <a href="{% url 'export_csv' %}?{{ request.GET.urlencode }}" class="btn btn-outline-success">
+      <i class="bi bi-download me-1"></i>Eksportuj CSV
+    </a>
+    <a href="{% url 'add_transaction' %}" class="btn btn-primary">
+      <i class="bi bi-plus-circle me-1"></i>Dodaj transakcję
+    </a>
+  </div>
+</div>
+
+<!-- Filters -->
+<div class="card mb-4">
+  <div class="card-body">
+    <form method="get" class="row g-2 align-items-end" novalidate>
+      <div class="col-md-2">{{ filter_form.transaction_type.label_tag }}{{ filter_form.transaction_type }}</div>
+      <div class="col-md-2">{{ filter_form.category.label_tag }}{{ filter_form.category }}</div>
+      <div class="col-md-2">{{ filter_form.account.label_tag }}{{ filter_form.account }}</div>
+      <div class="col-md-2">{{ filter_form.date_from.label_tag }}{{ filter_form.date_from }}</div>
+      <div class="col-md-2">{{ filter_form.date_to.label_tag }}{{ filter_form.date_to }}</div>
+      <div class="col-md-2 d-flex gap-2">
+        <button type="submit" class="btn btn-primary flex-fill"><i class="bi bi-funnel"></i> Filtruj</button>
+        <a href="{% url 'transaction_list' %}" class="btn btn-outline-secondary"><i class="bi bi-x"></i></a>
+      </div>
+    </form>
+    {% if filter_form.non_field_errors %}
+    <div class="alert alert-warning mt-2 mb-0 py-2 small">
+      <i class="bi bi-exclamation-triangle me-1"></i>{{ filter_form.non_field_errors|join:", " }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Summary -->
+<div class="row g-3 mb-3">
+  <div class="col-md-4"><div class="card p-3 text-center"><div class="text-muted small">Przychody</div><div class="fs-5 fw-bold text-success">+{{ total_income|floatformat:2 }} PLN</div></div></div>
+  <div class="col-md-4"><div class="card p-3 text-center"><div class="text-muted small">Wydatki</div><div class="fs-5 fw-bold text-danger">−{{ total_expense|floatformat:2 }} PLN</div></div></div>
+  <div class="col-md-4"><div class="card p-3 text-center"><div class="text-muted small">Bilans</div>
+    <div class="fs-5 fw-bold {% if balance >= 0 %}text-success{% else %}text-danger{% endif %}">{{ balance|floatformat:2 }} PLN</div>
+  </div></div>
+</div>
+
+<!-- Table -->
+<div class="card">
+  <div class="card-body p-0">
+    <table class="table mb-0">
+      <thead class="table-light"><tr>
+        <th>Data</th><th>Typ</th><th>Opis</th><th>Kategoria</th><th>Konto</th><th class="text-end">Kwota</th><th></th>
+      </tr></thead>
+      <tbody>
+        {% for tx in transactions %}
+        <tr>
+          <td class="text-muted small">{{ tx.date|date:"d.m.Y" }}</td>
+          <td>
+            {% if tx.transaction_type == 'income' %}
+              <span class="badge badge-income rounded-pill">Przychód</span>
+            {% else %}
+              <span class="badge badge-expense rounded-pill">Wydatek</span>
+            {% endif %}
+            {% if tx.is_imported %}<span class="badge bg-light text-secondary ms-1" title="Zaimportowane"><i class="bi bi-cloud-download"></i></span>{% endif %}
+          </td>
+          <td>{{ tx.description|default:"—" }}</td>
+          <td>{% if tx.category %}<span class="badge rounded-pill" style="background:{{ tx.category.color }}25;color:{{ tx.category.color }}">{{ tx.category.name }}</span>{% else %}—{% endif %}</td>
+          <td class="text-muted small">{{ tx.account.name }}</td>
+          <td class="text-end fw-semibold {% if tx.transaction_type == 'income' %}amount-income{% else %}amount-expense{% endif %}">
+            {% if tx.transaction_type == 'income' %}+{% else %}−{% endif %}{{ tx.amount|floatformat:2 }} {{ tx.account.currency }}
+          </td>
+          <td class="text-end">
+            <a href="{% url 'edit_transaction' tx.pk %}" class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></a>
+            <form method="post" action="{% url 'delete_transaction' tx.pk %}" class="d-inline" onsubmit="return confirm('Usunąć transakcję?')">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7" class="text-center text-muted py-5">Brak transakcji spełniających kryteria.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  {% if page_obj.has_other_pages %}
+  <div class="card-footer bg-white border-top-0 pt-0 pb-3">
+    <nav aria-label="Strony transakcji">
+      <ul class="pagination justify-content-center mb-0 mt-3">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?{% if request.GET.urlencode %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.previous_page_number }}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link"><i class="bi bi-chevron-left"></i></span></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+              <a class="page-link" href="?{% if request.GET.urlencode %}{{ request.GET.urlencode }}&{% endif %}page={{ num }}">{{ num }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?{% if request.GET.urlencode %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.next_page_number }}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link"><i class="bi bi-chevron-right"></i></span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <p class="text-center text-muted small mt-2 mb-0">
+      Strona {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}
+      ({{ page_obj.paginator.count }} transakcji łącznie)
+    </p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
