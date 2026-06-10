@@ -1,0 +1,140 @@
+{% extends "finance/base.html" %}
+{% block title %}Raporty — FinanceApp{% endblock %}
+
+{% block content %}
+<h1 class="section-title">Raporty i wykresy</h1>
+
+<!-- Filter -->
+<div class="card mb-4">
+  <div class="card-body">
+    <form method="get" class="row g-2 align-items-end">
+      <div class="col-md-3">{{ form.year.label_tag }}{{ form.year }}</div>
+      <div class="col-md-3">{{ form.month.label_tag }}{{ form.month }}</div>
+      <div class="col-md-2">
+        <label class="form-label d-block">&nbsp;</label>
+        <button type="submit" class="btn btn-primary w-100"><i class="bi bi-graph-up me-1"></i>Generuj</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Charts row -->
+<div class="row g-4 mb-4">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-white fw-bold pt-3"><i class="bi bi-pie-chart-fill me-2 text-success"></i>Przychody wg kategorii</div>
+      <div class="card-body"><canvas id="incomeChart" height="220"></canvas></div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-white fw-bold pt-3"><i class="bi bi-pie-chart-fill me-2 text-danger"></i>Wydatki wg kategorii</div>
+      <div class="card-body"><canvas id="expenseChart" height="220"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- Monthly bar chart -->
+<div class="card mb-4">
+  <div class="card-header bg-white fw-bold pt-3"><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Miesięczne zestawienie {{ year }}</div>
+  <div class="card-body"><canvas id="monthlyChart" height="100"></canvas></div>
+</div>
+
+<!-- Category tables -->
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-white fw-bold pt-3 text-success"><i class="bi bi-arrow-down-circle me-2"></i>Top przychody</div>
+      <div class="card-body p-0">
+        <table class="table mb-0">
+          <thead class="table-light"><tr><th>Kategoria</th><th class="text-end">Kwota</th></tr></thead>
+          <tbody>
+            {% for row in income_by_category %}
+            <tr>
+              <td>{{ row.category__name|default:"Brak kategorii" }}</td>
+              <td class="text-end amount-income fw-semibold">{{ row.total|floatformat:2 }} PLN</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="2" class="text-center text-muted py-3">Brak danych</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-white fw-bold pt-3 text-danger"><i class="bi bi-arrow-up-circle me-2"></i>Top wydatki</div>
+      <div class="card-body p-0">
+        <table class="table mb-0">
+          <thead class="table-light"><tr><th>Kategoria</th><th class="text-end">Kwota</th></tr></thead>
+          <tbody>
+            {% for row in expense_by_category %}
+            <tr>
+              <td>{{ row.category__name|default:"Brak kategorii" }}</td>
+              <td class="text-end amount-expense fw-semibold">{{ row.total|floatformat:2 }} PLN</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="2" class="text-center text-muted py-3">Brak danych</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const chartDataUrl = "{% url 'reports_chart_data' %}?year={{ year }}{% if month %}&month={{ month }}{% endif %}";
+
+async function loadCharts() {
+  const res = await fetch(chartDataUrl);
+  const data = await res.json();
+
+  // Income pie
+  if (data.income_by_category.length) {
+    new Chart(document.getElementById('incomeChart'), {
+      type: 'doughnut',
+      data: {
+        labels: data.income_by_category.map(r => r.name),
+        datasets: [{ data: data.income_by_category.map(r => r.total), backgroundColor: data.income_by_category.map(r => r.color), borderWidth: 2, borderColor: '#fff' }]
+      },
+      options: { plugins: { legend: { position: 'right' } }, cutout: '60%' }
+    });
+  }
+
+  // Expense pie
+  if (data.expense_by_category.length) {
+    new Chart(document.getElementById('expenseChart'), {
+      type: 'doughnut',
+      data: {
+        labels: data.expense_by_category.map(r => r.name),
+        datasets: [{ data: data.expense_by_category.map(r => r.total), backgroundColor: data.expense_by_category.map(r => r.color), borderWidth: 2, borderColor: '#fff' }]
+      },
+      options: { plugins: { legend: { position: 'right' } }, cutout: '60%' }
+    });
+  }
+
+  // Monthly bar
+  const months = Object.keys(data.monthly).sort();
+  const incomeVals = months.map(m => data.monthly[m].income || 0);
+  const expenseVals = months.map(m => data.monthly[m].expense || 0);
+
+  new Chart(document.getElementById('monthlyChart'), {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        { label: 'Przychody', data: incomeVals, backgroundColor: '#10b981aa', borderColor: '#10b981', borderWidth: 1 },
+        { label: 'Wydatki', data: expenseVals, backgroundColor: '#ef4444aa', borderColor: '#ef4444', borderWidth: 1 },
+      ]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true } } }
+  });
+}
+
+loadCharts();
+</script>
+{% endblock %}
