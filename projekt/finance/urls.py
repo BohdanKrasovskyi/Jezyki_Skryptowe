@@ -16,4 +16,12 @@ urlpatterns = [
     path('reports/', views.reports, name='reports'),
     path('reports/chart-data/', views.reports_chart_data, name='reports_chart_data'),
     path('banking/', views.banking, name='banking'),
+    path('banking/institutions/', views.banking_institutions, name='banking_institutions'),
+    path('banking/link/', views.banking_link_start, name='banking_link_start'),
+    path('banking/callback/', views.banking_callback, name='banking_callback'),
+    path('banking/<int:pk>/sync/', views.banking_sync, name='banking_sync'),
+    path('banking/<int:pk>/unlink/', views.banking_unlink, name='banking_unlink'),
+    path('banking/demo-auth/', views.banking_demo_auth, name='banking_demo_auth'),
+    path('banking/obp/import/', views.banking_obp_import, name='banking_obp_import'),
+    path('banking/plaid/import/', views.banking_plaid_import, name='banking_plaid_import'),
 ]

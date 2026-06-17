@@ -129,3 +129,11 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # Free tier — no eIDAS certificate needed for sandbox
 GOCARDLESS_SECRET_ID = os.environ.get('GOCARDLESS_SECRET_ID', '')
 GOCARDLESS_SECRET_KEY = os.environ.get('GOCARDLESS_SECRET_KEY', '')
+
+OBP_BASE_URL      = 'https://apisandbox.openbankproject.com'
+OBP_CONSUMER_KEY  = os.environ.get('OBP_CONSUMER_KEY', 'kcw1gbauf3ahmvggjbk3fr2zzzebmjampn3qspca')
+OBP_DEMO_USERNAME = os.environ.get('OBP_DEMO_USERNAME', 'joe.bloggs@example.com')
+OBP_DEMO_PASSWORD = os.environ.get('OBP_DEMO_PASSWORD', 'qwerty')
+
+PLAID_CLIENT_ID = os.environ.get('PLAID_CLIENT_ID', '6a36bfa1d4a5b8000e3c544c')
+PLAID_SECRET    = os.environ.get('PLAID_SECRET',    '2f2f3526bbc16c983f7b2aaa6de481')
