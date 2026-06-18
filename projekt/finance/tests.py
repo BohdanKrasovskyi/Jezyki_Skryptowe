@@ -9,7 +9,7 @@ from decimal import Decimal
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from .models import Account, Category, Transaction
+from .models import Account, Category, Transaction, LinkedBankAccount
 from .forms import (
     AccountForm, CategoryForm, TransactionForm,
     TransactionFilterForm, ReportFilterForm, BankImportForm,

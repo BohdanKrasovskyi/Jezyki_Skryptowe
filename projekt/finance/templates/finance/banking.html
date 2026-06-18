@@ -1,0 +1,86 @@
+{% extends "finance/base.html" %}
+{% block title %}Import bankowy — FinanceApp{% endblock %}
+
+{% block content %}
+<h1 class="section-title">Import bankowy</h1>
+
+<ul class="nav nav-tabs mb-4">
+  <li class="nav-item">
+    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-plaid">
+      <i class="bi bi-credit-card me-1"></i>Plaid Sandbox
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-csv">
+      <i class="bi bi-filetype-csv me-1"></i>Import CSV
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content">
+
+  <!-- ══ Plaid Sandbox ══════════════════════════════════════════════════ -->
+  <div class="tab-pane fade show active" id="tab-plaid">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-header bg-white fw-bold pt-3">
+            <i class="bi bi-cloud-download me-2 text-success"></i>Pobierz transakcje z Plaid
+          </div>
+          <div class="card-body">
+            <form method="post" action="{% url 'banking_plaid_import' %}" novalidate>
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Konto docelowe</label>
+                {{ plaid_form.account }}
+                {% if plaid_form.account.errors %}
+                  <div class="text-danger small">{{ plaid_form.account.errors }}</div>
+                {% endif %}
+              </div>
+              <button type="submit" class="btn btn-success w-100 py-2">
+                <i class="bi bi-cloud-download me-1"></i>Importuj z Plaid Sandbox
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CSV Import ═════════════════════════════════════════════════════ -->
+  <div class="tab-pane fade" id="tab-csv">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-header bg-white fw-bold pt-3">
+            <i class="bi bi-cloud-upload me-2 text-primary"></i>Importuj wyciąg CSV
+          </div>
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data" novalidate>
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Konto docelowe</label>
+                {{ csv_form.account }}
+                {% if csv_form.account.errors %}
+                  <div class="text-danger small">{{ csv_form.account.errors }}</div>
+                {% endif %}
+              </div>
+              <div class="mb-4">
+                <label class="form-label fw-semibold">Plik CSV</label>
+                {{ csv_form.csv_file }}
+                {% if csv_form.csv_file.errors %}
+                  <div class="text-danger small">{{ csv_form.csv_file.errors }}</div>
+                {% endif %}
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-upload me-1"></i>Importuj
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
