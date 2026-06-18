@@ -1,0 +1,60 @@
+{% extends "finance/base.html" %}
+{% block title %}Kategorie — FinanceApp{% endblock %}
+
+{% block content %}
+<h1 class="section-title">Kategorie</h1>
+
+<div class="row g-4">
+  <!-- Add form -->
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header bg-white fw-bold pt-3"><i class="bi bi-plus-circle me-2 text-primary"></i>Nowa kategoria</div>
+      <div class="card-body">
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+          <div class="alert alert-danger py-2 small">{{ form.non_field_errors|join:", " }}</div>
+          {% endif %}
+          <div class="mb-3">
+            <label class="form-label">Nazwa</label>{{ form.name }}
+            {% if form.name.errors %}<div class="text-danger small mt-1">{{ form.name.errors|join:", " }}</div>{% endif %}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Typ</label>{{ form.category_type }}
+            {% if form.category_type.errors %}<div class="text-danger small mt-1">{{ form.category_type.errors|join:", " }}</div>{% endif %}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Kolor</label>{{ form.color }}
+          </div>
+          <button type="submit" class="btn btn-primary w-100"><i class="bi bi-plus"></i> Dodaj</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- List -->
+  <div class="col-md-8">
+    <div class="row g-3">
+      {% for cat in categories %}
+      <div class="col-md-6">
+        <div class="card p-3 d-flex flex-row align-items-center gap-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:{{ cat.color }}25;display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-tag-fill" style="color:{{ cat.color }};font-size:1.2rem"></i>
+          </div>
+          <div class="flex-fill">
+            <div class="fw-semibold">{{ cat.name }}</div>
+            <small class="text-muted">{{ cat.get_category_type_display }}</small>
+          </div>
+          <form method="post" action="{% url 'delete_category' cat.pk %}" onsubmit="return confirm('Usunąć kategorię?')">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+          </form>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12"><div class="alert alert-info">Brak kategorii. Dodaj pierwszą!</div></div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

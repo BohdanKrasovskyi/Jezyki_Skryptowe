@@ -1,6 +1,6 @@
 import pytest
 import datetime
-from TimeSeries import TimeSeries
+from lista_6.TimeSeries import TimeSeries
 
 #ZAD 3B
 def test_getitem_integer_index():

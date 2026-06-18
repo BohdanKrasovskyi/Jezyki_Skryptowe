@@ -1,6 +1,6 @@
 import sys
 import csv
-from sqlalchemy import create_engine, select
+from sqlalchemy import create_engine, event, select
 from sqlalchemy.orm import sessionmaker
 from create_database import Stations, Rentals
 
@@ -8,6 +8,13 @@ def load_data(path, db_name):
     db_filename = f"{db_name}.sqlite3"
 
     engine = create_engine(f"sqlite:///{db_filename}")
+
+    @event.listens_for(engine, "connect")
+    def set_sqlite_pragma(dbapi_conn, _):
+        cursor = dbapi_conn.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
+
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -58,7 +65,7 @@ def load_data(path, db_name):
                 end_time=row['Data zwrotu'],
                 rental_station_id=start_id,
                 return_station_id=end_id,
-                duration=int(row['Czas trwania'])
+                duration=int(float(row['Czas trwania']))
             )
             session.add(rental)
 

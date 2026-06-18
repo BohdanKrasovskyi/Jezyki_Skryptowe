@@ -1,6 +1,6 @@
 import datetime
 import pytest
-from Station import Station
+from lista_6.Station import Station
 
 #ZAD 3a
 def test_equality_same_code():

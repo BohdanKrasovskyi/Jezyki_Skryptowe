@@ -19,7 +19,7 @@ class TimeSeries:
     def median(self) -> float | None:
         if not self.list_of_dates:
             return None
-        measurement_clear = [x for x in self.measurement if x != None]
+        measurement_clear: list[float] = [x for x in self.measurement if x is not None]
         measurement_clear.sort()
         if not measurement_clear:
             return None
@@ -29,7 +29,7 @@ class TimeSeries:
     def range(self) -> tuple[float, float] | None:
         if not self.list_of_dates:
             return None
-        measurement_clear = [x for x in self.measurement if x != None]
+        measurement_clear: list[float] = [x for x in self.measurement if x is not None]
         if not measurement_clear:
             return None
         return max(measurement_clear), min(measurement_clear)
@@ -38,7 +38,7 @@ class TimeSeries:
     def stddev(self) -> float | None:
         if not self.list_of_dates:
             return None
-        measurements_clear = [x for x in self.measurement if x is not None]
+        measurements_clear: list[float] = [x for x in self.measurement if x is not None]
         if len(measurements_clear) < 2:
             return None
         return statistics.stdev(measurements_clear)
@@ -47,7 +47,7 @@ class TimeSeries:
     def mean(self) -> float | None:
         if not self.list_of_dates:
             return None
-        measurements_clear = [x for x in self.measurement if x is not None]
+        measurements_clear: list[float] = [x for x in self.measurement if x is not None]
         if not measurements_clear:
             return None
         return statistics.mean(measurements_clear)
@@ -61,18 +61,18 @@ class TimeSeries:
                 start = 0
             if stop is None:
                 stop = len(self.list_of_dates)
-            ret = []
+            ret: list[tuple[date, float | None]] = []
             for i in range(start, stop, step):
                 ret.append((self.list_of_dates[i], self.measurement[i]))
             return ret
         if isinstance(val, int):
             return self.list_of_dates[val], self.measurement[val],
         if isinstance(val, datetime.date):
-            ret = []
+            ret2: list[tuple[date, float | None]] = []
             for i in range(0, len(self.list_of_dates)):
                 if self.list_of_dates[i] == val:
-                    ret.append((self.list_of_dates[i], self.measurement[i]))
-            if not ret:
+                    ret2.append((self.list_of_dates[i], self.measurement[i]))
+            if not ret2:
                 raise KeyError
-            return ret
+            return ret2
         raise TypeError

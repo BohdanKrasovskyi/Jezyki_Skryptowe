@@ -1,7 +1,7 @@
 import csv
 import re
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, date
 from typing import Any
 
 from TimeSeries import TimeSeries
@@ -17,7 +17,7 @@ class Measurements:
 
 
     def build_index(self) -> None:
-        pattern = re.compile(r"^(\d{4})_([a-zA-Z0-9()_]+)_([a-zA-Z0-9]+)\.csv$")
+        pattern: re.Pattern[str] = re.compile(r"^(\d{4})_([a-zA-Z0-9()_]+)_([a-zA-Z0-9]+)\.csv$")
 
         for file_path in self.directory_path.iterdir():
             if file_path.is_file():
@@ -28,8 +28,8 @@ class Measurements:
 
                     with file_path.open(encoding="utf-8") as file:
                         reader = csv.reader(file)
-                        stations = []
-                        unit = ""
+                        stations: list[str] = []
+                        unit: str = ""
 
                         for line_idx, row in enumerate(reader):
                             if line_idx == 1:
@@ -60,13 +60,13 @@ class Measurements:
 
 
     def _create_time_series(self, file_path: Path, station_code : str) -> TimeSeries:
-        meta = self._file_metadata[file_path]
+        meta: dict[str, Any] = self._file_metadata[file_path]
         measurements_dict = self._loaded_data[file_path]
 
         station_data = measurements_dict.get(station_code, [])
 
-        list_of_dates = []
-        measurements_values = []
+        list_of_dates: list[date] = []
+        measurements_values: list[float | None] = []
 
         for record in station_data:
             dt = datetime.strptime(record["time"], "%m/%d/%y %H:%M")
@@ -83,7 +83,7 @@ class Measurements:
         )
 
     def get_by_parameter(self, param_name : str) -> list[TimeSeries]:
-        result = []
+        result: list[TimeSeries] = []
         for file_path, meta in self._file_metadata.items():
             if meta["indicator"] == param_name:
                 self._load_file(file_path)
@@ -94,7 +94,7 @@ class Measurements:
         return result
 
     def get_by_station(self, station_code : str) -> list[TimeSeries]:
-        result = []
+        result: list[TimeSeries] = []
         for file_path, meta in self._file_metadata.items():
             if station_code in meta["stations"]:
                 self._load_file(file_path)
@@ -103,14 +103,14 @@ class Measurements:
         return result
 
 
-    def detect_all_anomalies(self, validators : list['SeriesValidator'], preload: bool = False) -> dict:
+    def detect_all_anomalies(self, validators : list['SeriesValidator'], preload: bool = False) -> dict[str, list[str]]:
         results : dict[str, list[str]] = {}
 
         if preload:
             for file_path in self._file_metadata.keys():
                 self._load_file(file_path)
 
-        series_to_validate = []
+        series_to_validate: list[TimeSeries] = []
 
         for file_path, meta in self._file_metadata.items():
             if not preload and file_path not in self._loaded_data:
@@ -122,10 +122,10 @@ class Measurements:
 
         for series in series_to_validate:
             for validator in validators:
-                anomalies = validator.analyze(series)
+                anomalies: list[str] = validator.analyze(series)
 
                 if anomalies:
-                    key = f"{series.name_of_indicator} ({series.code_of_station})"
+                    key: str = f"{series.name_of_indicator} ({series.code_of_station})"
 
                     if key not in results:
                         results[key] = []

@@ -1,0 +1,379 @@
+{% extends "finance/base.html" %}
+{% block title %}Import bankowy — FinanceApp{% endblock %}
+
+{% block content %}
+<h1 class="section-title">Bankowość internetowa</h1>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs mb-4" id="bankingTabs">
+  <li class="nav-item">
+    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-openbanking">
+      <i class="bi bi-bank2 me-1"></i>Open Banking (GoCardless)
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-csv">
+      <i class="bi bi-filetype-csv me-1"></i>Import CSV
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-history">
+      <i class="bi bi-clock-history me-1"></i>Historia CSV
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content">
+
+  <!-- ══ TAB 1: Open Banking ══════════════════════════════════════════ -->
+  <div class="tab-pane fade show active" id="tab-openbanking">
+    <div class="row g-4">
+
+      <!-- Connected accounts -->
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header bg-white pt-3 fw-bold d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-plug-fill me-2 text-success"></i>Połączone konta bankowe</span>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#linkModal">
+              <i class="bi bi-plus-circle me-1"></i>Podłącz bank
+            </button>
+          </div>
+          <div class="card-body p-0">
+            {% if linked_accounts %}
+            <table class="table mb-0 align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Bank</th>
+                  <th>Konto lokalne</th>
+                  <th>Status</th>
+                  <th>Ostatnia sync.</th>
+                  <th class="text-end">Akcje</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for la in linked_accounts %}
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      {% if la.institution_logo %}
+                      <img src="{{ la.institution_logo }}" alt="" style="height:28px;border-radius:6px" onerror="this.style.display='none'">
+                      {% endif %}
+                      <div>
+                        <div class="fw-semibold">{{ la.institution_name }}</div>
+                        <small class="text-muted font-monospace">{{ la.institution_id }}</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ la.account.name }}</td>
+                  <td>
+                    {% if la.status == 'linked' %}
+                      <span class="badge bg-success rounded-pill"><i class="bi bi-check-circle me-1"></i>Połączone</span>
+                    {% elif la.status == 'pending' %}
+                      <span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-hourglass me-1"></i>Oczekuje</span>
+                    {% else %}
+                      <span class="badge bg-danger rounded-pill"><i class="bi bi-x-circle me-1"></i>Błąd</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-muted small">
+                    {% if la.last_synced %}{{ la.last_synced|date:"d.m.Y H:i" }}{% else %}—{% endif %}
+                  </td>
+                  <td class="text-end">
+                    {% if la.status == 'linked' %}
+                    <form method="post" action="{% url 'banking_sync' la.pk %}" class="d-inline">
+                      {% csrf_token %}
+                      <button class="btn btn-sm btn-outline-primary me-1" title="Synchronizuj transakcje">
+                        <i class="bi bi-arrow-repeat"></i> Sync
+                      </button>
+                    </form>
+                    {% endif %}
+                    <form method="post" action="{% url 'banking_unlink' la.pk %}" class="d-inline"
+                          onsubmit="return confirm('Odłączyć to konto bankowe?')">
+                      {% csrf_token %}
+                      <button class="btn btn-sm btn-outline-danger" title="Odłącz">
+                        <i class="bi bi-plug"></i> Odłącz
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <div class="text-center py-5 text-muted">
+              <i class="bi bi-bank2" style="font-size:3rem;opacity:.3"></i>
+              <p class="mt-3">Brak połączonych kont bankowych.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#linkModal">
+                <i class="bi bi-plus-circle me-1"></i>Podłącz swój pierwszy bank
+              </button>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Info card -->
+      <div class="col-md-6">
+        <div class="card border-0 bg-primary bg-opacity-10">
+          <div class="card-body">
+            <h6 class="fw-bold text-primary"><i class="bi bi-shield-check me-2"></i>Jak działa Open Banking?</h6>
+            <ol class="small text-muted mb-0">
+              <li>Kliknij <strong>Podłącz bank</strong> i wybierz swój bank z listy</li>
+              <li>Zostaniesz przekierowany na stronę banku (lub sandbox GoCardless)</li>
+              <li>Po autoryzacji wracasz tutaj — konto jest gotowe</li>
+              <li>Kliknij <strong>Sync</strong>, aby pobrać nowe transakcje automatycznie</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card border-0 bg-warning bg-opacity-10">
+          <div class="card-body">
+            <h6 class="fw-bold text-warning"><i class="bi bi-key me-2"></i>Konfiguracja (jednorazowa)</h6>
+            <p class="small text-muted mb-2">W pliku <code>finance_project/settings.py</code> ustaw:</p>
+            <pre class="bg-light p-2 rounded small mb-2">GOCARDLESS_SECRET_ID = 'twój-id'
+GOCARDLESS_SECRET_KEY = 'twój-klucz'</pre>
+            <a href="https://bankaccountdata.gocardless.com/" target="_blank" class="btn btn-sm btn-warning">
+              <i class="bi bi-box-arrow-up-right me-1"></i>Zarejestruj się (za darmo)
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ TAB 2: CSV Import ════════════════════════════════════════════ -->
+  <div class="tab-pane fade" id="tab-csv">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-header bg-white fw-bold pt-3"><i class="bi bi-cloud-upload me-2 text-primary"></i>Importuj wyciąg CSV</div>
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data" novalidate>
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Konto docelowe</label>
+                {{ csv_form.account }}
+                {% if csv_form.account.errors %}<div class="text-danger small">{{ csv_form.account.errors }}</div>{% endif %}
+              </div>
+              <div class="mb-4">
+                <label class="form-label fw-semibold">Plik CSV</label>
+                {{ csv_form.csv_file }}
+                {% if csv_form.csv_file.errors %}<div class="text-danger small">{{ csv_form.csv_file.errors }}</div>{% endif %}
+              </div>
+              <button type="submit" class="btn btn-primary w-100"><i class="bi bi-upload me-1"></i>Importuj</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="card">
+          <div class="card-header bg-white fw-bold pt-3"><i class="bi bi-info-circle me-2 text-info"></i>Format CSV</div>
+          <div class="card-body">
+            <p class="text-muted small">Obsługiwane kolumny:</p>
+            <ul class="small text-muted">
+              <li><code>Data</code> / <code>Date</code> — format RRRR-MM-DD lub DD.MM.RRRR</li>
+              <li><code>Kwota</code> / <code>Amount</code> — ujemna = wydatek</li>
+              <li><code>Opis</code> / <code>Description</code> — opcjonalny</li>
+            </ul>
+            <pre class="bg-light p-2 rounded small">Data,Kwota,Opis
+2024-01-15,3500.00,Wynagrodzenie
+2024-01-16,-89.99,Zakupy
+2024-01-17,-45.00,Paliwo</pre>
+            <a href="#" class="btn btn-sm btn-outline-secondary" id="downloadSample">
+              <i class="bi bi-download me-1"></i>Pobierz przykład
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TAB 3: CSV History ═══════════════════════════════════════════ -->
+  <div class="tab-pane fade" id="tab-history">
+    <div class="card">
+      <div class="card-body p-0">
+        <table class="table mb-0">
+          <thead class="table-light"><tr><th>Plik</th><th>Konto</th><th>Data importu</th><th class="text-end">Rekordy</th></tr></thead>
+          <tbody>
+            {% for imp in import_history %}
+            <tr>
+              <td class="font-monospace small">{{ imp.file_name }}</td>
+              <td>{{ imp.account.name }}</td>
+              <td class="text-muted small">{{ imp.imported_at|date:"d.m.Y H:i" }}</td>
+              <td class="text-end"><span class="badge bg-primary rounded-pill">{{ imp.records_count }}</span></td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" class="text-center text-muted py-4">Brak importów CSV.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-content -->
+
+
+<!-- ══ MODAL: Link bank ══════════════════════════════════════════════════ -->
+<div class="modal fade" id="linkModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold"><i class="bi bi-bank2 me-2"></i>Podłącz konto bankowe</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Step 1: pick country + search -->
+        <div id="step-1">
+          <div class="row g-3 mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Kraj</label>
+              <select class="form-select" id="countrySelect">
+                <option value="pl" selected>🇵🇱 Polska</option>
+                <option value="de">🇩🇪 Niemcy</option>
+                <option value="gb">🇬🇧 Wielka Brytania</option>
+                <option value="fr">🇫🇷 Francja</option>
+                <option value="nl">🇳🇱 Holandia</option>
+              </select>
+            </div>
+            <div class="col-md-8">
+              <label class="form-label">Wyszukaj bank</label>
+              <input type="text" class="form-control" id="institutionSearch" placeholder="np. PKO, mBank, Sandbox...">
+            </div>
+          </div>
+
+          <div id="institutionList" class="row g-2" style="max-height:340px;overflow-y:auto">
+            <div class="col-12 text-center py-4 text-muted" id="loadingMsg">
+              <div class="spinner-border spinner-border-sm me-2"></div>Ładowanie banków...
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: confirm & pick local account -->
+        <div id="step-2" style="display:none">
+          <div class="d-flex align-items-center gap-3 mb-4 p-3 bg-light rounded">
+            <img id="selectedLogo" src="" alt="" style="height:48px;border-radius:8px" onerror="this.style.display='none'">
+            <div>
+              <div class="fw-bold fs-6" id="selectedName"></div>
+              <small class="text-muted" id="selectedId"></small>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary ms-auto" id="btnBack">
+              <i class="bi bi-arrow-left me-1"></i>Zmień
+            </button>
+          </div>
+
+          <form method="post" action="{% url 'banking_link_start' %}" id="linkForm">
+            {% csrf_token %}
+            <input type="hidden" name="institution_id" id="fInstitutionId">
+            <input type="hidden" name="institution_name" id="fInstitutionName">
+            <input type="hidden" name="institution_logo" id="fInstitutionLogo">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Przypisz do konta lokalnego</label>
+              {{ link_form.account }}
+            </div>
+            <div class="alert alert-info small">
+              <i class="bi bi-info-circle me-2"></i>
+              Po kliknięciu <strong>Autoryzuj</strong> zostaniesz przekierowany na stronę banku (lub sandbox GoCardless).
+              Po zalogowaniu wrócisz tutaj automatycznie.
+            </div>
+            <button type="submit" class="btn btn-success w-100 py-2">
+              <i class="bi bi-shield-check me-2"></i>Autoryzuj w banku
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ── CSV sample download ───────────────────────────────────────────────────
+document.getElementById('downloadSample')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  const csv = 'Data,Kwota,Opis\n2024-01-15,3500.00,Wynagrodzenie\n2024-01-16,-89.99,Zakupy Biedronka\n2024-01-17,-45.00,Paliwo';
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(new Blob([csv], {type: 'text/csv'})),
+    download: 'przyklad_wyciag.csv',
+  });
+  a.click();
+});
+
+// ── Institution picker (modal) ────────────────────────────────────────────
+let allInstitutions = [];
+
+async function loadInstitutions(country) {
+  const list = document.getElementById('institutionList');
+  list.innerHTML = '<div class="col-12 text-center py-4 text-muted"><div class="spinner-border spinner-border-sm me-2"></div>Ładowanie...</div>';
+  try {
+    const resp = await fetch(`{% url 'banking_institutions' %}?country=${country}`);
+    const data = await resp.json();
+    if (data.error) {
+      list.innerHTML = `<div class="col-12"><div class="alert alert-danger">${data.error}</div></div>`;
+      return;
+    }
+    allInstitutions = data.institutions;
+    renderInstitutions(allInstitutions);
+  } catch (err) {
+    list.innerHTML = `<div class="col-12"><div class="alert alert-danger">Błąd połączenia z GoCardless.</div></div>`;
+  }
+}
+
+function renderInstitutions(list) {
+  const el = document.getElementById('institutionList');
+  if (!list.length) {
+    el.innerHTML = '<div class="col-12 text-center text-muted py-3">Brak wyników.</div>';
+    return;
+  }
+  el.innerHTML = list.map(inst => `
+    <div class="col-md-4">
+      <button type="button" class="btn btn-outline-secondary w-100 text-start p-2 inst-btn"
+              data-id="${inst.id}" data-name="${inst.name}" data-logo="${inst.logo || ''}">
+        <div class="d-flex align-items-center gap-2">
+          ${inst.logo ? `<img src="${inst.logo}" alt="" style="height:28px;border-radius:4px" onerror="this.style.display='none'">` : '<i class="bi bi-bank2" style="font-size:1.4rem"></i>'}
+          <span class="small fw-semibold text-truncate">${inst.name}</span>
+        </div>
+      </button>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.inst-btn').forEach(btn => {
+    btn.addEventListener('click', () => selectInstitution(btn.dataset));
+  });
+}
+
+function selectInstitution({id, name, logo}) {
+  document.getElementById('fInstitutionId').value = id;
+  document.getElementById('fInstitutionName').value = name;
+  document.getElementById('fInstitutionLogo').value = logo;
+  document.getElementById('selectedName').textContent = name;
+  document.getElementById('selectedId').textContent = id;
+  document.getElementById('selectedLogo').src = logo;
+  document.getElementById('step-1').style.display = 'none';
+  document.getElementById('step-2').style.display = '';
+}
+
+document.getElementById('btnBack')?.addEventListener('click', () => {
+  document.getElementById('step-1').style.display = '';
+  document.getElementById('step-2').style.display = 'none';
+});
+
+document.getElementById('countrySelect').addEventListener('change', (e) => {
+  loadInstitutions(e.target.value);
+});
+
+document.getElementById('institutionSearch').addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase();
+  renderInstitutions(q ? allInstitutions.filter(i => i.name.toLowerCase().includes(q)) : allInstitutions);
+});
+
+document.getElementById('linkModal').addEventListener('show.bs.modal', () => {
+  if (!allInstitutions.length) loadInstitutions('pl');
+});
+</script>
+{% endblock %}

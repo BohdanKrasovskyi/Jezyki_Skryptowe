@@ -1,6 +1,6 @@
 import sys
 
-from sqlalchemy import create_engine, Integer, Text, ForeignKey
+from sqlalchemy import create_engine, event, Integer, Text, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 class Base(DeclarativeBase):
@@ -54,6 +54,12 @@ def main():
     db_filename = f"{db_name}.sqlite3"
 
     engine = create_engine(f"sqlite:///{db_filename}", echo=True)
+
+    @event.listens_for(engine, "connect")
+    def set_sqlite_pragma(dbapi_conn, _):
+        cursor = dbapi_conn.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
 
     Base.metadata.create_all(engine)
 

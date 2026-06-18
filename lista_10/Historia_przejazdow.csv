@@ -1,0 +1,477 @@
+UID wynajmu,Numer roweru,Data wynajmu,Data zwrotu,Stacja wynajmu,Stacja zwrotu,Czas trwania
+319296892,591389,2026-01-01 20:13:45,2026-01-06 16:16:49,Ślężna / Kamienna (Uniw. Ekonomiczny),Poza stacją,6963
+319463838,591032,2026-01-05 17:59:40,2026-01-06 10:51:52,Tyrmanda / Mińska,Tyrmanda / Trawowa,1012
+319476408,592466,2026-01-05 22:04:47,2026-01-06 09:58:39,Stacyjna (Dworzec Mikołajów),Tyrmanda / Trawowa,714
+319479340,590734,2026-01-05 23:58:26,2026-01-06 00:14:27,Zachodnia / Poznańska,Poza stacją,16
+319479356,592107,2026-01-05 23:58:57,2026-01-06 00:07:39,Graniczna / Strzegomska,Poza stacją,9
+319479425,591777,2026-01-06 00:03:47,2026-01-06 00:06:03,Legnicka / Zachodnia ,Zachodnia / Poznańska,2
+319479428,592837,2026-01-06 00:03:56,2026-01-06 00:08:00,Poza stacją,Zaporoska / Grabiszyńska,4
+319479613,591860,2026-01-06 00:15:19,2026-01-06 00:26:18,"Kosmonautów / Fieldorfa, szpital wojewódzki",Poza stacją,11
+319479640,592053,2026-01-06 00:17:16,2026-01-06 00:24:41,Świdnicka / Piłsudskiego (Hotel Scandic),Plac Powstańców Śląskich,7
+319479709,591204,2026-01-06 00:22:51,2026-01-06 00:23:40,Nowowiejska / Jedności Narodowej,Nowowiejska / Jedności Narodowej,1
+319479725,590455,2026-01-06 00:23:40,2026-01-06 00:36:26,pl. Staszica,Rondo Reagana,13
+319479733,590760,2026-01-06 00:24:10,2026-01-06 00:28:37,Nowowiejska / Jedności Narodowej,Jedności Narodowej / Wyszyńskiego,4
+319479761,590912,2026-01-06 00:26:31,2026-01-06 00:30:56,Nowowiejska / Górnickiego,Sienkiewicza / Piastowska,4
+319479768,591631,2026-01-06 00:27:03,2026-01-06 00:27:46,Legnicka (Park Magnolia),Legnicka (Park Magnolia),1
+319479795,592512,2026-01-06 00:29:26,2026-01-06 00:39:08,Legnicka (Park Magnolia),Bajana / Szybowcowa,10
+319479863,591492,2026-01-06 00:35:13,2026-01-06 00:40:57,Dyrekcyjna / Borowska (Wroclavia),Komandorska / Kamienna,6
+319479870,591624,2026-01-06 00:35:32,2026-01-06 00:47:52,Borowska / Kamienna (Aquapark),Plac Kościuszki (Renoma),12
+319479921,592090,2026-01-06 00:40:04,2026-01-06 00:59:33,Drobnera / Plac Bema,Wróblewskiego (Teki),19
+319479964,591869,2026-01-06 00:44:57,2026-01-06 01:03:33,Powstańców Śląskich/Orla,Świdnicka / Piłsudskiego (Hotel Scandic),19
+319480029,590755,2026-01-06 00:52:23,2026-01-06 01:24:02,"Paprotna / Obornicka, zajezdnia MPK",Szczęśliwa (Sky Tower),32
+319480098,590255,2026-01-06 00:58:32,2026-01-06 01:02:47,Pereca / Grabiszyńska,Zaporoska / Grabiszyńska,4
+319480131,590013,2026-01-06 01:03:13,2026-01-06 01:19:35,Olszewskiego / Spółdzielcza,Plac Świętego Macieja / Trzebnicka,16
+319480132,591028,2026-01-06 01:03:15,2026-01-06 01:15:30,Zaporoska / Grabiszyńska,Pereca / Grabiszyńska,12
+319480338,592937,2026-01-06 01:25:24,2026-01-06 01:37:41,Plac Uniwersytecki (UWr),Sienkiewicza / Piastowska,12
+319480360,592473,2026-01-06 01:28:24,2026-01-06 01:33:25,Dyrekcyjna / Borowska (Wroclavia),Poza stacją,5
+319480408,592754,2026-01-06 01:33:37,2026-01-06 01:35:15,Ślężna / Kamienna (Uniw. Ekonomiczny),Poza stacją,2
+319480528,590069,2026-01-06 01:49:48,2026-01-06 01:57:09,"Dworzec Główny, południe",Hubska / Prudnicka,7
+319480621,590482,2026-01-06 02:04:20,2026-01-06 02:14:07,Plac Świętego Macieja / Trzebnicka,Jedności Narodowej / Wyszyńskiego,10
+319480622,590013,2026-01-06 02:04:35,2026-01-06 02:14:39,Plac Świętego Macieja / Trzebnicka,Jedności Narodowej / Wyszyńskiego,10
+319480649,591081,2026-01-06 02:12:02,2026-01-06 02:17:52,Strzegomska / Estońska,Poza stacją,6
+319480737,590026,2026-01-06 02:31:26,2026-01-06 02:40:21,Mińska / Stanisławowska,Smolec,9
+319480822,592013,2026-01-06 02:59:11,2026-01-06 03:06:00,Żmigrodzka / Marino,Poza stacją,7
+319480826,590334,2026-01-06 02:59:47,2026-01-06 03:05:49,Żmigrodzka / Marino,Bezpieczna / Obornicka,6
+319480844,590543,2026-01-06 03:05:57,2026-01-06 03:20:58,Żmigrodzka / Marino,Akademia Wojsk Lądowych,15
+319480933,591507,2026-01-06 03:32:07,2026-01-06 03:32:23,Kamieńskiego,Kamieńskiego,0
+319480938,590499,2026-01-06 03:32:33,2026-01-06 03:43:13,Kamieńskiego,"Paprotna / Obornicka, zajezdnia MPK",11
+319481002,590347,2026-01-06 03:53:13,2026-01-06 03:58:25,Berenta / Kasprowicza,Akademia Wojsk Lądowych,5
+319481007,592689,2026-01-06 03:54:30,2026-01-06 04:06:54,Kopycińskiego/Drabika,Gazowa / Międzyleska,12
+319481019,590610,2026-01-06 03:56:55,2026-01-06 04:03:10,Poza stacją,Robotnicza / Fabryczna,6
+319481023,591747,2026-01-06 03:57:54,2026-01-06 04:03:19,Poza stacją,Robotnicza / Fabryczna,5
+319481031,591994,2026-01-06 03:59:42,2026-01-06 04:14:51,Jagodzińska / Buforowa,al. Armii Krajowej / Bardzka,15
+319481067,590633,2026-01-06 04:09:54,2026-01-06 04:18:45,Oporów (pętla tramwajowa),Hallera / Odkrywców,9
+319481092,591714,2026-01-06 04:19:07,2026-01-06 04:33:54,Kutrzeby / Hubala,Powstańców Śląskich/Orla,15
+319481093,590568,2026-01-06 04:19:27,2026-01-06 04:33:01,al. Karkonoska / Jeździecka,Centrum Handlowe Auchan Bielany,14
+319481108,591981,2026-01-06 04:22:10,2026-01-06 04:29:48,Na Ostatnim Groszu,Poza stacją,8
+319481109,590633,2026-01-06 04:22:13,2026-01-06 04:36:49,Hallera / Odkrywców,Powstańcow Śląskich / Aleja Hallera,15
+319481142,590568,2026-01-06 04:34:14,2026-01-06 04:40:31,Centrum Handlowe Auchan Bielany,Aleja Bielany,6
+319481201,592177,2026-01-06 04:54:01,2026-01-06 04:55:13,Hallera / Odkrywców,Hallera / Odkrywców,1
+319481202,590794,2026-01-06 04:55:34,2026-01-06 05:08:06,Hallera / Odkrywców,Powstańcow Śląskich / Aleja Hallera,13
+319481204,590596,2026-01-06 04:56:05,2026-01-06 05:01:50,Księgarska / Dekarska / Zduńska,Waniliowa / Cynamonowa,6
+319481214,590703,2026-01-06 04:59:05,2026-01-06 05:04:54,Legnicka / Zachodnia ,Legnicka / Młodych Techników,6
+319481246,592264,2026-01-06 05:06:36,2026-01-06 05:11:00,Ślężna / Kamienna (Uniw. Ekonomiczny),"Dworzec Główny, południe",4
+319481251,591822,2026-01-06 05:07:13,2026-01-06 05:15:01,Zwycięska / Agrestowa,al. Karkonoska / Jeździecka,8
+319481309,592099,2026-01-06 05:18:47,2026-01-06 05:29:16,Ślężna / Aleja Wiśniowa,al. Armii Krajowej / Bardzka,10
+319481334,591684,2026-01-06 05:23:13,2026-01-06 05:36:51,Zatorska / Królewska - pętla MPK,Krzywoustego - Rynek Psie Pole,14
+319481374,591214,2026-01-06 05:31:26,2026-01-06 06:05:46,Marca Polo (Olimpia Port),al. Poprzeczna / stacja kolejowa,34
+319481435,590018,2026-01-06 05:37:00,2026-01-06 05:37:22,Krzywoustego - Rynek Psie Pole,Krzywoustego - Rynek Psie Pole,0
+319481463,591684,2026-01-06 05:39:02,2026-01-06 05:58:16,Krzywoustego - Rynek Psie Pole,3M,19
+319481514,590163,2026-01-06 05:45:30,2026-01-06 06:03:45,Kutrzeby / Hubala,Przyjaźni / Karkonoska,18
+319481609,591028,2026-01-06 05:54:57,2026-01-06 06:06:49,Pereca / Grabiszyńska,Pereca / Grabiszyńska,12
+319481615,591835,2026-01-06 05:55:38,2026-01-06 05:58:34,Na Grobli (PWr - Geocentrum),Traugutta / Pułaskiego,3
+319481680,592840,2026-01-06 06:02:35,2026-01-06 06:54:11,Plac Uniwersytecki (UWr),Centrum Handlowe Auchan Bielany,52
+319481737,590141,2026-01-06 06:07:29,2026-01-06 06:18:32,Strzegomska / Estońska,Klecińska (Wrocław Grabiszyn),11
+319481800,591305,2026-01-06 06:14:57,2026-01-06 06:25:51,Borowska / Kamienna (Aquapark),Borowska (Uniw. Szpital Kliniczny),11
+319482330,591561,2026-01-06 06:52:33,2026-01-06 06:58:03,Plac Dominikański (Galeria Dominikańska),Kościuszki / Pułaskiego,6
+319482334,590035,2026-01-06 06:52:43,2026-01-06 06:56:02,Legnicka / Zachodnia ,Legnicka / Młodych Techników,3
+319482545,592799,2026-01-06 07:04:08,2026-01-06 07:04:36,Sienkiewicza / Piastowska,Sienkiewicza / Piastowska,0
+319482560,590238,2026-01-06 07:04:48,2026-01-06 07:18:35,Sienkiewicza / Piastowska,Rakowiecka,14
+319482672,592189,2026-01-06 07:11:11,2026-01-06 07:26:21,Gajowicka,Komandorska / Sanocka,15
+319483005,592189,2026-01-06 07:27:06,2026-01-06 07:36:31,Komandorska / Sanocka,Kościuszki / Komuny Paryskiej / Zgodna,9
+319483150,590304,2026-01-06 07:32:24,2026-01-06 07:44:42,Poza stacją,Przyjaźni / Karkonoska,12
+319483169,590562,2026-01-06 07:32:51,2026-01-06 07:35:35,Krzywoustego - Rynek Psie Pole,al. Jana III Sobieskiego / stacja kolejowa,3
+319483440,591631,2026-01-06 07:40:48,2026-01-06 07:44:59,Legnicka (Park Magnolia),Stacyjna (Dworzec Mikołajów),4
+319483777,590370,2026-01-06 07:50:18,2026-01-06 07:58:53,Poza stacją,Stabłowicka / Główna ,9
+319483868,591047,2026-01-06 07:52:23,2026-01-06 07:53:31,al. Armii Krajowej / Borowska,al. Armii Krajowej / Borowska,1
+319483927,590876,2026-01-06 07:53:59,2026-01-06 08:04:17,al. Armii Krajowej / Borowska,Dworzec Główny ,10
+319483947,591652,2026-01-06 07:54:39,2026-01-06 07:57:21,Piaskowa / św. Ducha,Plac Dominikański (Galeria Dominikańska),3
+319484014,592920,2026-01-06 07:56:46,2026-01-06 08:06:35,Żelazna / Pereca,Plac Jana Pawła II (Akademia Muzyczna),10
+319484131,590370,2026-01-06 07:59:55,2026-01-06 08:18:22,Stabłowicka / Główna ,Pilczycka / Koszykarska,18
+319484336,592837,2026-01-06 08:05:53,2026-01-06 08:13:40,Zaporoska / Grabiszyńska,Dworzec Główny ,8
+319484489,592452,2026-01-06 08:10:46,2026-01-06 08:22:23,Reymonta / Kleczkowska,Kazimierza Wielkiego (Helios),12
+319484506,592566,2026-01-06 08:11:25,2026-01-06 08:18:09,Plac Dominikański (Galeria Dominikańska),Rondo Reagana,7
+319484522,590703,2026-01-06 08:11:40,2026-01-06 08:18:10,Legnicka / Młodych Techników,Legnicka / Zachodnia ,7
+319484574,590536,2026-01-06 08:13:13,2026-01-06 08:19:06,Opolska / pętla tramwajowa,Opolska / Siemianowicka,6
+319484801,590370,2026-01-06 08:19:44,2026-01-06 08:36:40,Pilczycka / Koszykarska,Plac Strzegomski / Poznańska,17
+319484991,590734,2026-01-06 08:24:45,2026-01-06 08:38:00,Grabiszyńska / Stalowa,Ślężna / Aleja Wiśniowa,13
+319485296,591274,2026-01-06 08:33:04,2026-01-06 08:44:54,Pomorska/Cybulskiego,Sienkiewicza / Wyszyńskiego,12
+319485359,590880,2026-01-06 08:34:29,2026-01-06 08:42:02,Dworzec Główny ,Piaskowa / św. Ducha,8
+319485490,590370,2026-01-06 08:37:55,2026-01-06 08:45:50,Plac Strzegomski / Poznańska,Plac Legionów,8
+319485522,590734,2026-01-06 08:38:35,2026-01-06 08:53:27,Ślężna / Aleja Wiśniowa,Świeradowska (Ferio Gaj ),15
+319485571,590094,2026-01-06 08:39:43,2026-01-06 08:53:18,Wróblewskiego (Teki),Dworzec Główny ,14
+319485877,591274,2026-01-06 08:46:36,2026-01-06 09:00:00,Sienkiewicza / Wyszyńskiego,al. Kochanowskiego / Śniadeckich ,13
+319485934,590578,2026-01-06 08:47:52,2026-01-06 08:49:21,Poza stacją,Poza stacją,1
+319485948,592010,2026-01-06 08:48:13,2026-01-06 08:48:44,Grabiszyńska / Stalowa,Poza stacją,1
+319485963,591243,2026-01-06 08:48:27,2026-01-06 08:52:39,Zaporoska / Wielka / Krucza,Szczęśliwa (Sky Tower),4
+319485990,592905,2026-01-06 08:48:59,2026-01-06 08:54:57,Grabiszyńska / Stalowa,Zaporoska / Grabiszyńska,6
+319486121,592269,2026-01-06 08:52:00,2026-01-06 08:58:28,Poza stacją,"Dworzec Główny, południe",6
+319486158,591671,2026-01-06 08:52:48,2026-01-06 09:01:41,Szczęśliwa (Sky Tower),"Dworzec Główny, południe",9
+319486517,590921,2026-01-06 09:01:37,2026-01-06 09:18:57,Skarbowców / Wietrzna,Szczęśliwa (Sky Tower),17
+319486668,592511,2026-01-06 09:05:53,2026-01-06 09:08:33,Żeromskiego / Daszyńskiego,Nowowiejska / Jedności Narodowej,3
+319486773,591204,2026-01-06 09:08:43,2026-01-06 09:14:13,Nowowiejska / Jedności Narodowej,pl. Powstańców Wielkopolskich,6
+319487136,591794,2026-01-06 09:19:24,2026-01-06 09:27:22,Nowowiejska / Jedności Narodowej,Piaskowa / św. Ducha,8
+319487397,590090,2026-01-06 09:27:12,2026-01-06 09:30:27,Kamieńskiego / Jutrosińska,Kamieńskiego,3
+319487522,590690,2026-01-06 09:30:45,2026-01-06 09:39:40,Rogowska / Zemska,Na Ostatnim Groszu,9
+319487839,592674,2026-01-06 09:39:38,2026-01-06 09:45:10,Szczęśliwa (Sky Tower),Ślężna / Kamienna (Uniw. Ekonomiczny),6
+319487863,590963,2026-01-06 09:40:22,2026-01-06 09:47:19,Gorlicka / Litewska,al. Jana III Sobieskiego / stacja kolejowa,7
+319487970,591139,2026-01-06 09:43:02,2026-01-06 09:52:27,Drobnera / Plac Bema,Dworzec Główny ,9
+319488105,590886,2026-01-06 09:46:23,2026-01-06 10:03:42,Ślężna / Kamienna (Uniw. Ekonomiczny),Grota-Roweckiego / Parafialna,17
+319488113,590397,2026-01-06 09:46:37,2026-01-06 09:51:25,Hubska / Prudnicka,"Dworzec Główny, południe",5
+319488373,591202,2026-01-06 09:53:57,2026-01-06 09:54:13,Bardzka / Piękna,Bardzka / Piękna,0
+319488402,590579,2026-01-06 09:54:38,2026-01-06 10:00:06,Bardzka / Piękna,Borowska / Kamienna (Aquapark),5
+319488607,592211,2026-01-06 10:00:45,2026-01-06 10:08:10,Piękna,Krakowska / Leroy Merlin,7
+319488624,591822,2026-01-06 10:01:09,2026-01-06 10:10:12,al. Karkonoska / Jeździecka,Przyjaźni / Karkonoska,9
+319488669,592254,2026-01-06 10:03:23,2026-01-06 10:15:01,Kościuszki / Komuny Paryskiej / Zgodna,Szczęśliwa (Sky Tower),12
+319488863,591863,2026-01-06 10:09:59,2026-01-06 10:15:11,Hubska / Prudnicka,Nyska / Piękna,5
+319488956,591811,2026-01-06 10:13:02,2026-01-06 10:16:27,Poniatowskiego / Oleśnicka,Plac Świętego Macieja / Trzebnicka,3
+319489108,590734,2026-01-06 10:18:09,2026-01-06 10:27:38,Świeradowska (Ferio Gaj ),Poza stacją,9
+319489188,591062,2026-01-06 10:20:48,2026-01-06 10:59:40,Wysoka/Nastrojowa,"Dworzec Główny, południe",39
+319489217,590590,2026-01-06 10:21:56,2026-01-06 10:27:36,Kazimierza Wielkiego (Helios),Plac Legionów,6
+319489235,591777,2026-01-06 10:22:32,2026-01-06 10:38:27,Zachodnia / Poznańska,Lotnicza / Metalowców,16
+319489363,591239,2026-01-06 10:27:32,2026-01-06 10:33:34,Żelazna / Pereca,Plac Powstańców Śląskich,6
+319489419,590590,2026-01-06 10:29:40,2026-01-06 10:35:53,Plac Legionów,Pereca / Grabiszyńska,6
+319489537,592905,2026-01-06 10:33:40,2026-01-06 12:09:42,Zaporoska / Grabiszyńska,Zaporoska / Grabiszyńska,96
+319489657,590590,2026-01-06 10:38:13,2026-01-06 10:42:04,Pereca / Grabiszyńska,Grabiszyńska / Stalowa,4
+319489679,591777,2026-01-06 10:39:11,2026-01-06 10:53:15,Lotnicza / Metalowców,Żernicka,14
+319489747,591463,2026-01-06 10:41:22,2026-01-06 10:52:30,Plac Uniwersytecki (UWr),Żmigrodzka / Broniewskiego,11
+319489921,592010,2026-01-06 10:47:12,2026-01-06 10:47:41,Grabiszyńska / Stalowa,Grabiszyńska / Stalowa,0
+319489947,590590,2026-01-06 10:47:52,2026-01-06 10:52:27,Grabiszyńska / Stalowa,Grabiszyńska / Magazynierska (Corte Verona),5
+319490352,590785,2026-01-06 10:59:41,2026-01-06 11:05:08,Nowowiejska / Jedności Narodowej,Plac Świętego Macieja / Trzebnicka,5
+319490578,590475,2026-01-06 11:07:28,2026-01-06 11:12:23,Prochowicka / Dolnobrzeska,"Wrocław Leśnica, stacja kolejowa",5
+319490848,592233,2026-01-06 11:16:05,2026-01-06 11:28:50,Legnicka (Park Magnolia),Bajana / Szybowcowa,13
+319490857,591002,2026-01-06 11:16:28,2026-01-06 11:28:57,Legnicka (Park Magnolia),Bajana / Szybowcowa,12
+319490892,591223,2026-01-06 11:17:37,2026-01-06 11:18:09,Wyszyńskiego / Szczytnicka,Wyszyńskiego / Szczytnicka,1
+319490992,590973,2026-01-06 11:20:55,2026-01-06 11:25:51,Poza stacją,Świdnicka / Piłsudskiego (Hotel Scandic),5
+319491025,592479,2026-01-06 11:22:01,2026-01-06 11:28:42,Szczęśliwa (Sky Tower),Powstańcow Śląskich / Aleja Hallera,7
+319491078,590482,2026-01-06 11:23:23,2026-01-06 11:26:58,Jedności Narodowej / Wyszyńskiego,Nowowiejska / Wyszyńskiego,4
+319491095,591081,2026-01-06 11:23:45,2026-01-06 11:30:45,Graniczna / Strzegomska,Tyrmanda / Trawowa,7
+319491114,592114,2026-01-06 11:24:39,2026-01-06 11:38:43,Grochowa / Jemiołowa,Rynek,14
+319491172,592739,2026-01-06 11:26:42,2026-01-06 11:37:38,al. Armii Krajowej / Borowska,Gajowicka,11
+319491306,592584,2026-01-06 11:30:37,2026-01-06 11:33:33,Grochowa / Jemiołowa,Zaporoska / Wielka / Krucza,3
+319491340,592112,2026-01-06 11:31:33,2026-01-06 11:37:15,Dworzec Główny ,Kościuszki / Pułaskiego,6
+319491352,592479,2026-01-06 11:31:59,2026-01-06 11:43:50,Powstańcow Śląskich / Aleja Hallera,Skarbowców / Wietrzna,12
+319491610,590806,2026-01-06 11:39:44,2026-01-06 11:58:53,Partyzantów / Okrzei,Sienkiewicza / Wyszyńskiego,19
+319491637,591348,2026-01-06 11:40:18,2026-01-06 11:54:38,Tarnogajska / Klimasa,"Dworzec Główny, południe",14
+319491740,590097,2026-01-06 11:43:27,2026-01-06 11:55:05,Kamienna / Tomaszowska,Aleja Hallera / Mielecka,12
+319491886,591811,2026-01-06 11:46:51,2026-01-06 11:58:32,Plac Świętego Macieja / Trzebnicka,Reymonta / Kleczkowska,12
+319492027,592754,2026-01-06 11:50:47,2026-01-06 11:55:59,Komandorska / Kamienna,Dyrekcyjna / Borowska (Wroclavia),5
+319492089,591651,2026-01-06 11:52:26,2026-01-06 12:04:17,Kołłątaja / Podwale,Pereca / Grabiszyńska,12
+319492209,591243,2026-01-06 11:55:29,2026-01-06 12:13:30,Szczęśliwa (Sky Tower),Nyska / Piękna,18
+319492247,590425,2026-01-06 11:56:26,2026-01-06 11:59:39,Ułańska,Zwycięska / Agrestowa,3
+319492307,591047,2026-01-06 11:58:12,2026-01-06 12:04:01,al. Armii Krajowej / Borowska,Ślężna / Aleja Wiśniowa,6
+319492355,590810,2026-01-06 11:59:44,2026-01-06 12:06:30,Ślężna / Kamienna (Uniw. Ekonomiczny),Dyrekcyjna / Borowska (Wroclavia),7
+319492372,592473,2026-01-06 12:00:03,2026-01-06 12:07:55,Ślężna / Kamienna (Uniw. Ekonomiczny),Dyrekcyjna / Borowska (Wroclavia),8
+319492410,592739,2026-01-06 12:01:05,2026-01-06 12:05:21,Gajowicka,Aleja Hallera / Mielecka,4
+319492532,592660,2026-01-06 12:04:18,2026-01-06 12:21:59,Ułańska,al. Armii Krajowej / Borowska,18
+319492539,590126,2026-01-06 12:04:37,2026-01-06 12:25:45,Śrubowa / Strzegomska,"Dworzec Główny, południe",21
+319492669,590578,2026-01-06 12:08:01,2026-01-06 12:13:15,Poza stacją,Kazimierza Wielkiego (Helios),5
+319492684,591242,2026-01-06 12:08:29,2026-01-06 12:13:23,Plac Legionów,Kazimierza Wielkiego (Helios),5
+319492886,591868,2026-01-06 12:13:31,2026-01-06 12:19:07,Poza stacją,Rondo Reagana,6
+319492986,591243,2026-01-06 12:16:33,2026-01-06 12:18:00,Nyska / Piękna,Nyska / Piękna,1
+319492996,591561,2026-01-06 12:16:50,2026-01-06 12:24:00,Kościuszki / Pułaskiego,Plac Legionów,7
+319493043,590746,2026-01-06 12:18:11,2026-01-06 12:32:27,Traugutta / Kościuszki,Wróblewskiego (Teki),14
+319493047,591079,2026-01-06 12:18:15,2026-01-06 12:27:06,Nyska / Piękna,"Dworzec Główny, południe",9
+319493164,591255,2026-01-06 12:21:20,2026-01-06 12:27:55,Dworzec Główny ,Piaskowa / św. Ducha,7
+319493360,591042,2026-01-06 12:25:26,2026-01-06 12:40:34,Grabiszyńska / Stalowa,Plac Jana Pawła II (Akademia Muzyczna),15
+319493412,590397,2026-01-06 12:26:33,2026-01-06 12:28:04,"Dworzec Główny, południe","Dworzec Główny, południe",2
+319493505,591348,2026-01-06 12:28:37,2026-01-06 12:46:27,"Dworzec Główny, południe",Tarnogajska / Klimasa,18
+319493560,590765,2026-01-06 12:30:18,2026-01-06 12:36:48,Piękna,Krakowska / Leroy Merlin,7
+319493562,592310,2026-01-06 12:30:20,2026-01-06 12:45:05,Śrubowa / Strzegomska,Legnicka / Zachodnia ,15
+319493619,590769,2026-01-06 12:32:01,2026-01-06 12:42:17,Poniatowskiego / Oleśnicka,Aleja Kromera,10
+319493681,590399,2026-01-06 12:33:30,2026-01-06 12:51:08,Nyska / Piękna,Szczęśliwa (Sky Tower),18
+319493809,592010,2026-01-06 12:36:48,2026-01-06 12:37:14,Grabiszyńska / Stalowa,Grabiszyńska / Stalowa,0
+319493810,590516,2026-01-06 12:36:49,2026-01-06 12:39:26,Powstańców Śląskich/Orla,Krzycka / Aleja Karkonoska (Park Południowy),3
+319493872,592262,2026-01-06 12:38:43,2026-01-06 12:55:01,Aleja Hallera / Mielecka,Borowska / Kamienna (Aquapark),16
+319493893,590177,2026-01-06 12:39:21,2026-01-06 12:41:38,Na Grobli (PWr - Geocentrum),Na Grobli (PWr - Geocentrum),2
+319493944,590703,2026-01-06 12:40:39,2026-01-06 12:44:24,Legnicka / Zachodnia ,Legnicka (Park Magnolia),4
+319493994,591212,2026-01-06 12:42:06,2026-01-06 12:43:06,Na Grobli (PWr - Geocentrum),Na Grobli (PWr - Geocentrum),1
+319494015,591651,2026-01-06 12:42:40,2026-01-06 12:55:05,Pereca / Grabiszyńska,"Dworzec Główny, południe",12
+319494177,591463,2026-01-06 12:46:17,2026-01-06 12:55:54,Żmigrodzka / Broniewskiego,"Paprotna / Obornicka, zajezdnia MPK",10
+319494328,590653,2026-01-06 12:49:22,2026-01-06 12:53:12,Plac Grunwaldzki (DS Ołówek),Rondo Reagana,4
+319494337,591212,2026-01-06 12:49:36,2026-01-06 13:31:49,Na Grobli (PWr - Geocentrum),Poza stacją,42
+319494613,592723,2026-01-06 12:55:28,2026-01-06 13:33:32,Poleska / Litewska,Rondo Reagana,38
+319494695,591822,2026-01-06 12:56:55,2026-01-06 13:04:18,Przyjaźni / Karkonoska,al. Karkonoska / Jeździecka,7
+319494846,590397,2026-01-06 13:00:36,2026-01-06 13:12:09,"Dworzec Główny, południe",Nyska / Piękna,12
+319494931,592673,2026-01-06 13:02:20,2026-01-06 13:14:00,Plac Dominikański (Galeria Dominikańska),Dworzec Główny ,12
+319494935,592472,2026-01-06 13:02:26,2026-01-06 13:08:20,Komandorska / Kamienna,"Dworzec Główny, południe",6
+319495009,592689,2026-01-06 13:03:54,2026-01-06 13:54:39,Gazowa / Międzyleska,Gazowa / Międzyleska,51
+319495185,590119,2026-01-06 13:08:02,2026-01-06 13:14:03,Kościuszki / Komuny Paryskiej / Zgodna,Kołłątaja / Podwale,6
+319495289,591164,2026-01-06 13:10:26,2026-01-06 13:14:30,Bardzka / Piękna,Piękna,4
+319495309,592189,2026-01-06 13:10:54,2026-01-06 13:22:22,Kościuszki / Komuny Paryskiej / Zgodna,Świdnicka / Piłsudskiego (Hotel Scandic),11
+319495443,592775,2026-01-06 13:14:12,2026-01-06 13:15:32,Otyńska / Traktatowa,Poza stacją,1
+319495532,592287,2026-01-06 13:16:11,2026-01-06 13:35:44,Piękna,Olszewskiego / Spółdzielcza,20
+319495603,591835,2026-01-06 13:17:59,2026-01-06 13:24:37,Traugutta / Pułaskiego,Wita Stwosza / Szewska,7
+319495626,590006,2026-01-06 13:18:36,2026-01-06 13:22:01,Dworzec Główny ,Dworzec Główny ,3
+319495643,591202,2026-01-06 13:19:10,2026-01-06 13:38:27,Bardzka / Piękna,Karwińska / Opolska,19
+319495654,590286,2026-01-06 13:19:25,2026-01-06 13:37:22,Dworzec Główny ,Komandorska / Kamienna,18
+319495706,592761,2026-01-06 13:20:43,2026-01-06 13:32:58,Szczęśliwa (Sky Tower),Kościuszki / Komuny Paryskiej / Zgodna,12
+319495808,591028,2026-01-06 13:23:37,2026-01-06 13:36:38,Pereca / Grabiszyńska,Plac Powstańców Śląskich,13
+319495822,592214,2026-01-06 13:23:55,2026-01-06 13:27:52,Plac Dominikański (Galeria Dominikańska),Szewska / Kazimierza Wielkiego ,4
+319496019,590482,2026-01-06 13:28:13,2026-01-06 13:33:07,Nowowiejska / Wyszyńskiego,Jedności Narodowej / Wyszyńskiego,5
+319496044,592584,2026-01-06 13:28:53,2026-01-06 13:33:55,Zaporoska / Wielka / Krucza,Krucza / Mielecka / Stalowa,5
+319496131,592214,2026-01-06 13:31:09,2026-01-06 13:57:51,Szewska / Kazimierza Wielkiego ,Skarbowców / Wietrzna,27
+319496145,590287,2026-01-06 13:31:28,2026-01-06 13:37:50,Plac Uniwersytecki (UWr),Rynek,6
+319496252,592236,2026-01-06 13:33:58,2026-01-06 13:50:35,Zaporoska / Grabiszyńska,Drobnera / Plac Bema,17
+319496318,591825,2026-01-06 13:35:37,2026-01-06 13:52:08,Zwycięska / Ołtaszyńska,Aleja Bielany,17
+319496352,591288,2026-01-06 13:36:15,2026-01-06 13:37:26,Zwycięska / Ołtaszyńska,Zwycięska / Ołtaszyńska,1
+319496364,592254,2026-01-06 13:36:22,2026-01-06 13:49:06,Szczęśliwa (Sky Tower),Kościuszki / Pułaskiego,13
+319496371,591866,2026-01-06 13:36:36,2026-01-06 14:02:15,pl. Powstańców Wielkopolskich,Dworzec Główny ,26
+319496413,590822,2026-01-06 13:37:46,2026-01-06 13:43:12,Zwycięska / Ołtaszyńska,Ułańska,5
+319496490,592191,2026-01-06 13:39:20,2026-01-06 13:47:42,Świdnicka / Piłsudskiego (Hotel Scandic),Zaporoska / Grabiszyńska,8
+319496607,592660,2026-01-06 13:42:04,2026-01-06 13:45:55,al. Armii Krajowej / Borowska,Borowska (Uniw. Szpital Kliniczny),4
+319496608,592319,2026-01-06 13:42:05,2026-01-06 14:01:29,Lotnicza / Na Ostatnim Groszu,Legnicka / Młodych Techników,19
+319496613,592305,2026-01-06 13:42:12,2026-01-06 13:50:36,Komandorska / Kamienna,al. Armii Krajowej / Borowska,8
+319496649,591652,2026-01-06 13:43:22,2026-01-06 13:53:40,Plac Dominikański (Galeria Dominikańska),Dworzec Główny ,10
+319496654,592673,2026-01-06 13:43:30,2026-01-06 14:03:30,Dworzec Główny ,Rynek,20
+319496671,591532,2026-01-06 13:44:00,2026-01-06 13:55:30,Borowska / Kamienna (Aquapark),Plac Kościuszki (Renoma),12
+319496720,592758,2026-01-06 13:44:46,2026-01-06 13:45:40,Pilczycka / Kozanowska,Pilczycka / Kozanowska,1
+319496793,591305,2026-01-06 13:46:18,2026-01-06 13:58:59,Borowska (Uniw. Szpital Kliniczny),Ułańska,13
+319497040,590453,2026-01-06 13:51:09,2026-01-06 13:52:04,Świdnicka / Piłsudskiego (Hotel Scandic),Poza stacją,1
+319497046,592236,2026-01-06 13:51:15,2026-01-06 13:55:43,Drobnera / Plac Bema,Żeromskiego / Kluczborska,4
+319497096,590973,2026-01-06 13:52:26,2026-01-06 13:58:05,Świdnicka / Piłsudskiego (Hotel Scandic),Plac Jana Pawła II (Akademia Muzyczna),6
+319497097,590879,2026-01-06 13:52:26,2026-01-06 14:16:07,Plac Legionów,Borowska / Kamienna (Aquapark),24
+319497120,592259,2026-01-06 13:52:53,2026-01-06 14:16:23,Plac Legionów,Borowska / Kamienna (Aquapark),24
+319497132,591219,2026-01-06 13:53:16,2026-01-06 14:15:55,Plac Legionów,Borowska / Kamienna (Aquapark),23
+319497205,590217,2026-01-06 13:54:38,2026-01-06 14:02:52,Kozanowska / Pilczycka,Popowicka / Rysia,8
+319497382,592270,2026-01-06 13:58:33,2026-01-06 14:10:48,Dworzec Główny ,Kościuszki / Pułaskiego,12
+319497553,590359,2026-01-06 14:02:28,2026-01-06 14:46:47,Świeradowska (Ferio Gaj ),Nyska / Piękna,44
+319497736,590765,2026-01-06 14:06:33,2026-01-06 14:12:49,Krakowska / Leroy Merlin,Piękna,6
+319497760,591684,2026-01-06 14:07:00,2026-01-06 14:14:37,3M,Kwidzyńska pętla,8
+319497874,592458,2026-01-06 14:09:41,2026-01-06 14:13:12,Krzycka / Aleja Karkonoska (Park Południowy),Przyjaźni / Karkonoska,4
+319497886,590654,2026-01-06 14:09:56,2026-01-06 14:14:57,Ślężna / Kamienna (Uniw. Ekonomiczny),Kamienna / Tomaszowska,5
+319498016,591742,2026-01-06 14:12:26,2026-01-06 14:12:54,Plac Uniwersytecki (UWr),Plac Uniwersytecki (UWr),0
+319498032,590810,2026-01-06 14:12:46,2026-01-06 14:19:19,Dyrekcyjna / Borowska (Wroclavia),Kamienna / Tomaszowska,7
+319498055,592655,2026-01-06 14:13:10,2026-01-06 14:26:38,Plac Uniwersytecki (UWr),Poza stacją,13
+319498243,591624,2026-01-06 14:16:59,2026-01-06 14:22:36,Plac Kościuszki (Renoma),Dworzec Główny ,6
+319498385,592310,2026-01-06 14:20:08,2026-01-06 14:23:13,Legnicka / Zachodnia ,Plac Strzegomski / Poznańska,3
+319498508,590210,2026-01-06 14:22:38,2026-01-06 14:27:02,Bajana / Szybowcowa,Lotnicza / Na Ostatnim Groszu,4
+319498544,590973,2026-01-06 14:23:18,2026-01-06 14:30:35,Plac Jana Pawła II (Akademia Muzyczna),Dworzec Główny ,7
+319498559,591835,2026-01-06 14:23:35,2026-01-06 14:42:33,Wita Stwosza / Szewska,Plac Kościuszki (Renoma),19
+319498716,592009,2026-01-06 14:27:30,2026-01-06 15:01:43,Lotnicza / Na Ostatnim Groszu,al. Armii Krajowej / Borowska,34
+319498735,591596,2026-01-06 14:28:09,2026-01-06 14:40:11,Plac Grunwaldzki / Polaka,Kościuszki / Pułaskiego,12
+319498739,592509,2026-01-06 14:28:14,2026-01-06 14:39:53,Plac Grunwaldzki / Polaka,Kościuszki / Pułaskiego,12
+319498787,591305,2026-01-06 14:29:15,2026-01-06 14:34:57,Ułańska,Zwycięska / Ołtaszyńska,6
+319499037,592674,2026-01-06 14:34:36,2026-01-06 14:48:23,Ślężna / Kamienna (Uniw. Ekonomiczny),Świeradowska / Krynicka,14
+319499152,590056,2026-01-06 14:36:42,2026-01-06 14:47:51,Poza stacją,Poza stacją,11
+319499192,590806,2026-01-06 14:37:34,2026-01-06 14:51:49,Sienkiewicza / Wyszyńskiego,Wita Stwosza / Szewska,14
+319499205,592739,2026-01-06 14:37:47,2026-01-06 14:43:27,Aleja Hallera / Mielecka,Powstańcow Śląskich / Aleja Hallera,6
+319499243,590633,2026-01-06 14:38:44,2026-01-06 15:35:33,Powstańcow Śląskich / Aleja Hallera,Kutrzeby / Hubala,57
+319499290,590343,2026-01-06 14:39:36,2026-01-06 14:40:04,Piławska,Piławska,0
+319499423,591005,2026-01-06 14:42:01,2026-01-06 14:55:59,al. Kochanowskiego / Kopernika,Plac Grunwaldzki (DS Ołówek),14
+319499455,591745,2026-01-06 14:42:56,2026-01-06 14:50:53,Dworzec Główny ,Szewska / Kazimierza Wielkiego ,8
+319499599,591835,2026-01-06 14:46:13,2026-01-06 14:49:29,Plac Kościuszki (Renoma),Świdnicka / Piłsudskiego (Hotel Scandic),3
+319499600,590456,2026-01-06 14:46:14,2026-01-06 15:11:53,Komandorska / Kamienna,Ślężna / Aleja Wiśniowa,26
+319499635,592212,2026-01-06 14:47:06,2026-01-06 14:50:42,Drobnera / Plac Bema,Pomorska/Cybulskiego,4
+319499650,590487,2026-01-06 14:47:18,2026-01-06 15:11:51,Komandorska / Kamienna,Ślężna / Aleja Wiśniowa,25
+319499656,590785,2026-01-06 14:47:25,2026-01-06 14:55:31,Plac Świętego Macieja / Trzebnicka,Szewska / Kazimierza Wielkiego ,8
+319499690,590104,2026-01-06 14:48:03,2026-01-06 14:58:56,Poza stacją,al. Jana III Sobieskiego / stacja kolejowa,11
+319499778,591277,2026-01-06 14:49:43,2026-01-06 14:55:06,Zaporoska / Grabiszyńska,Świdnicka / Piłsudskiego (Hotel Scandic),5
+319500045,590217,2026-01-06 14:55:29,2026-01-06 15:08:54,Popowicka / Rysia,Popowicka / Rysia,13
+319500106,590019,2026-01-06 14:56:59,2026-01-06 15:04:35,Obornicka / Bałtycka,Berenta / Kasprowicza,8
+319500110,590499,2026-01-06 14:57:03,2026-01-06 15:01:43,"Paprotna / Obornicka, zajezdnia MPK",Bezpieczna / Obornicka,5
+319500166,592750,2026-01-06 14:58:19,2026-01-06 15:09:20,Krzywoustego - Rynek Psie Pole,Wilanowska,11
+319500183,591994,2026-01-06 14:58:49,2026-01-06 15:17:00,al. Armii Krajowej / Bardzka,Buforowa - Vivaldiego,18
+319500246,591304,2026-01-06 15:00:07,2026-01-06 15:02:54,Kazimierza Wielkiego (Helios),Plac Jana Pawła II (Akademia Muzyczna),3
+319500269,590769,2026-01-06 15:00:33,2026-01-06 15:11:07,Aleja Kromera,Poniatowskiego / Oleśnicka,11
+319500516,592511,2026-01-06 15:05:39,2026-01-06 15:07:55,Nowowiejska / Jedności Narodowej,Żeromskiego / Daszyńskiego,2
+319500774,592149,2026-01-06 15:10:48,2026-01-06 15:18:45,Racławicka / Rymarska,Aleja Hallera / Mielecka,8
+319500802,590760,2026-01-06 15:11:26,2026-01-06 15:29:02,Jedności Narodowej / Wyszyńskiego,Plac Dominikański (Galeria Dominikańska),18
+319500838,590365,2026-01-06 15:11:53,2026-01-06 15:20:38,Zaporoska / Grabiszyńska,Legnicka / Młodych Techników,9
+319500955,590701,2026-01-06 15:14:15,2026-01-06 15:31:30,"Paprotna / Obornicka, zajezdnia MPK",pl. Orląt Lwowskich,17
+319501108,591835,2026-01-06 15:17:50,2026-01-06 15:23:56,Świdnicka / Piłsudskiego (Hotel Scandic),"Dworzec Główny, południe",6
+319501198,590972,2026-01-06 15:19:40,2026-01-06 15:22:38,Kościuszki / Pułaskiego,Traugutta / Pułaskiego,3
+319501246,591514,2026-01-06 15:20:39,2026-01-06 15:29:51,Ślęza Parkowa,Bielany Wrocławskie Kolejowa P&R,9
+319501362,592775,2026-01-06 15:23:03,2026-01-06 15:30:22,Otyńska / Traktatowa,Poza stacją,7
+319501577,592410,2026-01-06 15:27:38,2026-01-06 15:39:21,Rogowska / Zemska,Graniczna / Strzegomska,12
+319501767,590421,2026-01-06 15:31:20,2026-01-06 15:37:52,Komandorska / Kamienna,Borowska / Kamienna (Aquapark),7
+319501790,590470,2026-01-06 15:31:53,2026-01-06 15:47:10,Awicenny,Klecińska (Wrocław Grabiszyn),15
+319501799,590701,2026-01-06 15:32:07,2026-01-06 15:43:35,pl. Orląt Lwowskich,Grabiszyńska / Aleja Hallera,11
+319502028,591042,2026-01-06 15:36:32,2026-01-06 15:51:04,Plac Jana Pawła II (Akademia Muzyczna),Kościuszki / Pułaskiego,15
+319502509,590468,2026-01-06 15:46:13,2026-01-06 15:46:34,Skarbowców / Wietrzna,Skarbowców / Wietrzna,0
+319502523,592479,2026-01-06 15:46:26,2026-01-06 15:54:27,Skarbowców / Wietrzna,Racławicka / Rymarska,8
+319502541,592214,2026-01-06 15:46:44,2026-01-06 15:54:39,Skarbowców / Wietrzna,Racławicka / Rymarska,8
+319502565,592562,2026-01-06 15:47:08,2026-01-06 15:56:03,Pereca / Grabiszyńska,Plac Powstańców Śląskich,9
+319502714,591865,2026-01-06 15:50:07,2026-01-06 15:57:49,Gajowicka,Racławicka / Rymarska,8
+319502715,591023,2026-01-06 15:50:08,2026-01-06 16:03:10,Kościuszki / Komuny Paryskiej / Zgodna,Komandorska / Kamienna,13
+319502867,592920,2026-01-06 15:52:56,2026-01-06 16:01:30,Plac Jana Pawła II (Akademia Muzyczna),Plac Kościuszki (Renoma),9
+319502872,590972,2026-01-06 15:53:05,2026-01-06 16:03:54,Traugutta / Pułaskiego,Rynek,11
+319502930,591070,2026-01-06 15:54:07,2026-01-06 16:05:17,Plac Dominikański (Galeria Dominikańska),pl. Staszica,11
+319503009,591050,2026-01-06 15:55:41,2026-01-06 16:04:34,Rakowiecka,Krakowska / Leroy Merlin,9
+319503075,590596,2026-01-06 15:56:45,2026-01-06 16:02:24,Waniliowa / Cynamonowa,Księgarska / Dekarska / Zduńska,6
+319503117,591825,2026-01-06 15:57:41,2026-01-06 16:11:06,Aleja Bielany,al. Karkonoska / Jeździecka,13
+319503364,590169,2026-01-06 16:01:54,2026-01-06 16:21:26,Świeradowska (Ferio Gaj ),Powstańcow Śląskich / Aleja Hallera,20
+319503390,592739,2026-01-06 16:02:19,2026-01-06 16:10:44,Powstańcow Śląskich / Aleja Hallera,Powstańców Śląskich/Orla,8
+319503392,591255,2026-01-06 16:02:21,2026-01-06 16:18:29,Piaskowa / św. Ducha,al. Armii Krajowej / Borowska,16
+319503398,592736,2026-01-06 16:02:43,2026-01-06 16:16:28,Lekarska/Żmigrodzka,Kamieńskiego,14
+319503497,591082,2026-01-06 16:04:07,2026-01-06 16:23:09,Plac Grunwaldzki / Polaka,Sienkiewicza / Wyszyńskiego,19
+319503499,591131,2026-01-06 16:04:09,2026-01-06 16:20:51,Borowska / Kamienna (Aquapark),Aleja Hallera / Mielecka,17
+319503805,592840,2026-01-06 16:09:23,2026-01-06 16:57:08,Centrum Handlowe Auchan Bielany,Plac Uniwersytecki (UWr),48
+319504045,590238,2026-01-06 16:13:33,2026-01-06 16:28:58,Rakowiecka,Nowowiejska / Górnickiego,15
+319504152,591651,2026-01-06 16:15:09,2026-01-06 17:01:50,"Dworzec Główny, południe",Stabłowicka / Główna ,47
+319504226,592837,2026-01-06 16:16:14,2026-01-06 16:23:17,Dworzec Główny ,Zaporoska / Grabiszyńska,7
+319504533,590810,2026-01-06 16:21:16,2026-01-06 16:30:54,Kamienna / Tomaszowska,Nyska / Piękna,10
+319504621,592212,2026-01-06 16:22:56,2026-01-06 16:30:32,Pomorska/Cybulskiego,Sienkiewicza / Wyszyńskiego,8
+319504676,591187,2026-01-06 16:23:57,2026-01-06 16:36:33,Przyjaźni,Wysoka/Nastrojowa,13
+319504744,590785,2026-01-06 16:24:58,2026-01-06 16:36:19,Szewska / Kazimierza Wielkiego ,pl. Orląt Lwowskich,11
+319504831,592445,2026-01-06 16:26:27,2026-01-06 16:32:32,Kościuszki / Pułaskiego,Plac Dominikański (Galeria Dominikańska),6
+319504929,591745,2026-01-06 16:27:49,2026-01-06 16:45:40,Szewska / Kazimierza Wielkiego ,al. Armii Krajowej / Borowska,18
+319505003,592360,2026-01-06 16:28:47,2026-01-06 16:39:10,Wyszyńskiego / Szczytnicka,Dworzec Główny ,10
+319505051,591112,2026-01-06 16:29:29,2026-01-06 16:32:17,Poza stacją,Sienkiewicza / Piastowska,3
+319505053,590451,2026-01-06 16:29:30,2026-01-06 16:56:27,Legnicka / Młodych Techników,Lotnicza / Metalowców,27
+319505130,592053,2026-01-06 16:30:53,2026-01-06 16:42:38,Plac Powstańców Śląskich,Racławicka / Rymarska,12
+319505270,592211,2026-01-06 16:33:06,2026-01-06 16:39:05,Krakowska / Leroy Merlin,Piękna,6
+319505785,592837,2026-01-06 16:41:12,2026-01-06 16:49:47,Zaporoska / Grabiszyńska,Szewska / Kazimierza Wielkiego ,9
+319505900,590794,2026-01-06 16:42:45,2026-01-06 16:53:36,Powstańcow Śląskich / Aleja Hallera,Hallera / Odkrywców,11
+319506166,592133,2026-01-06 16:46:38,2026-01-06 16:56:36,Jagiełły / Dmowskiego ,pl. Orląt Lwowskich,10
+319506370,590303,2026-01-06 16:49:30,2026-01-06 17:04:19,Wałbrzyska - pętla tramwajowa,Aleja Bielany,15
+319506458,590543,2026-01-06 16:50:41,2026-01-06 16:57:19,Akademia Wojsk Lądowych,Żmigrodzka / Broniewskiego,7
+319506478,591047,2026-01-06 16:51:00,2026-01-06 16:57:58,Ślężna / Aleja Wiśniowa,al. Armii Krajowej / Borowska,7
+319506522,592775,2026-01-06 16:51:39,2026-01-06 16:59:41,Poza stacją,Otyńska / Traktatowa,8
+319506732,590141,2026-01-06 16:54:58,2026-01-06 17:12:29,Klecińska (Wrocław Grabiszyn),Awicenny,18
+319506964,591825,2026-01-06 16:58:19,2026-01-06 17:05:34,al. Karkonoska / Jeździecka,Zwycięska / Agrestowa,7
+319507014,590002,2026-01-06 16:59:07,2026-01-06 17:03:17,al. Brücknera / Kwidzyńska,Aleja Kromera,4
+319507334,591294,2026-01-06 17:03:47,2026-01-06 17:11:27,Żeromskiego / Daszyńskiego,Drobnera / Plac Bema,8
+319507406,590303,2026-01-06 17:04:55,2026-01-06 17:13:42,Aleja Bielany,Amazon WRO1,9
+319507672,590784,2026-01-06 17:08:40,2026-01-06 17:24:33,Maślicka / Stodolna,Stabłowicka / Główna ,16
+319507764,592706,2026-01-06 17:09:58,2026-01-06 17:41:10,al. Armii Krajowej / Bardzka,Świeradowska (Ferio Gaj ),31
+319507909,590678,2026-01-06 17:12:13,2026-01-06 17:21:29,Drobnera / Plac Bema,Plac Jana Pawła II (Akademia Muzyczna),9
+319507930,591274,2026-01-06 17:12:26,2026-01-06 17:25:10,al. Kochanowskiego / Śniadeckich ,Sienkiewicza / Wyszyńskiego,13
+319508159,590805,2026-01-06 17:15:53,2026-01-06 17:35:07,pl. Orląt Lwowskich,Szczęśliwa (Sky Tower),19
+319508183,592123,2026-01-06 17:16:09,2026-01-06 17:53:47,Awicenny,Popowicka / Rysia,38
+319508314,590094,2026-01-06 17:17:47,2026-01-06 17:31:34,Dworzec Główny ,Legnicka / Młodych Techników,14
+319508533,591050,2026-01-06 17:21:27,2026-01-06 17:30:23,Krakowska / Leroy Merlin,Rakowiecka,9
+319508681,590385,2026-01-06 17:23:35,2026-01-06 17:27:04,Krzycka / Aleja Karkonoska (Park Południowy),Przyjaźni / Karkonoska,3
+319508707,591212,2026-01-06 17:23:54,2026-01-06 17:26:10,Poza stacją,Kościuszki / Pułaskiego,2
+319509003,591274,2026-01-06 17:28:02,2026-01-06 17:28:26,Sienkiewicza / Wyszyńskiego,Sienkiewicza / Wyszyńskiego,0
+319509075,591274,2026-01-06 17:29:07,2026-01-06 17:41:49,Sienkiewicza / Wyszyńskiego,Pomorska/Cybulskiego,13
+319509264,591350,2026-01-06 17:31:54,2026-01-06 17:39:30,Bajana / Szybowcowa,Kozanowska / Pilczycka,8
+319509326,592053,2026-01-06 17:32:52,2026-01-06 17:37:39,Racławicka / Rymarska,Gajowicka,5
+319509406,592243,2026-01-06 17:33:55,2026-01-06 17:38:14,Akademia Wojsk Lądowych,Berenta / Kasprowicza,4
+319509695,591192,2026-01-06 17:38:32,2026-01-06 17:47:56,Grochowa / Jemiołowa,Grabiszyńska / Aleja Hallera,9
+319509929,590169,2026-01-06 17:41:46,2026-01-06 17:54:19,Powstańcow Śląskich / Aleja Hallera,Hallera / Odkrywców,13
+319509933,592212,2026-01-06 17:41:46,2026-01-06 17:49:31,Sienkiewicza / Wyszyńskiego,Pomorska/Cybulskiego,8
+319510346,592010,2026-01-06 17:47:47,2026-01-06 17:48:24,Grabiszyńska / Stalowa,Grabiszyńska / Stalowa,1
+319510417,591504,2026-01-06 17:48:43,2026-01-06 17:49:16,Grabiszyńska / Stalowa,Grabiszyńska / Stalowa,1
+319510868,590169,2026-01-06 17:55:10,2026-01-06 18:03:42,Hallera / Odkrywców,Oporów (pętla tramwajowa),9
+319511014,590880,2026-01-06 17:57:06,2026-01-06 18:02:35,Piaskowa / św. Ducha,Plac Uniwersytecki (UWr),5
+319511145,590119,2026-01-06 17:58:49,2026-01-06 18:09:11,Kołłątaja / Podwale,Traugutta / Kościuszki,10
+319511153,590141,2026-01-06 17:58:53,2026-01-06 18:19:48,Awicenny,Poza stacją,21
+319511240,590921,2026-01-06 18:00:09,2026-01-06 18:01:33,Szczęśliwa (Sky Tower),Szczęśliwa (Sky Tower),1
+319511356,590478,2026-01-06 18:01:51,2026-01-06 18:11:11,Szczęśliwa (Sky Tower),Poza stacją,9
+319511447,591062,2026-01-06 18:03:03,2026-01-06 18:06:01,"Dworzec Główny, południe","Dworzec Główny, południe",3
+319511634,590805,2026-01-06 18:05:54,2026-01-06 18:23:03,Szczęśliwa (Sky Tower),Skarbowców / Wietrzna,17
+319511651,591671,2026-01-06 18:06:10,2026-01-06 18:21:38,"Dworzec Główny, południe",Grabiszyńska / Stalowa,15
+319511732,592002,2026-01-06 18:07:20,2026-01-06 18:10:27,Szewska / Kazimierza Wielkiego ,Rynek,3
+319512165,592468,2026-01-06 18:14:01,2026-01-06 18:21:14,Żelazna / Pereca,Grabiszyńska / Magazynierska (Corte Verona),7
+319512210,590399,2026-01-06 18:14:43,2026-01-06 18:36:50,Szczęśliwa (Sky Tower),pl. Orląt Lwowskich,22
+319512650,591532,2026-01-06 18:20:46,2026-01-06 18:32:43,Plac Kościuszki (Renoma),Zaporoska / Grabiszyńska,12
+319513512,592254,2026-01-06 18:34:37,2026-01-06 18:44:59,Kościuszki / Pułaskiego,Piękna,10
+319513658,590096,2026-01-06 18:36:54,2026-01-06 18:42:38,Krakowska / Leroy Merlin,Karwińska / Opolska,6
+319513665,590187,2026-01-06 18:37:03,2026-01-06 18:42:42,Krakowska / Leroy Merlin,Karwińska / Opolska,6
+319513699,591777,2026-01-06 18:37:37,2026-01-06 18:53:27,Żernicka,Drzewieckiego / Dedala,16
+319514003,591806,2026-01-06 18:42:27,2026-01-06 18:49:20,Grabiszyńska / Magazynierska (Corte Verona),Żelazna / Pereca,7
+319514228,590104,2026-01-06 18:45:53,2026-01-06 18:51:51,al. Jana III Sobieskiego / stacja kolejowa,Zatorska / Królewska - pętla MPK,6
+319514315,591223,2026-01-06 18:47:06,2026-01-06 18:53:39,Wyszyńskiego / Szczytnicka,Piaskowa / św. Ducha,7
+319514361,591877,2026-01-06 18:48:01,2026-01-06 18:52:10,Stacyjna (Dworzec Mikołajów),Legnicka / Zachodnia ,4
+319514390,591418,2026-01-06 18:48:31,2026-01-06 18:52:13,Stacyjna (Dworzec Mikołajów),Legnicka / Zachodnia ,4
+319514599,590397,2026-01-06 18:51:43,2026-01-06 19:11:39,Nyska / Piękna,Aleja Hallera / Mielecka,20
+319515058,590880,2026-01-06 18:59:22,2026-01-06 19:06:10,Plac Uniwersytecki (UWr),Drobnera / Plac Bema,7
+319515304,591005,2026-01-06 19:03:11,2026-01-06 19:50:16,Plac Grunwaldzki (DS Ołówek),Plac Grunwaldzki (DS Ołówek),47
+319515433,590705,2026-01-06 19:04:52,2026-01-06 19:21:44,Borowska (Uniw. Szpital Kliniczny),"Dworzec Główny, południe",17
+319515904,591919,2026-01-06 19:13:08,2026-01-06 19:33:29,Borowska / Kamienna (Aquapark),Świeradowska / Krynicka,20
+319515935,590456,2026-01-06 19:13:35,2026-01-06 19:24:53,Ślężna / Aleja Wiśniowa,Krucza / Mielecka / Stalowa,11
+319515970,591806,2026-01-06 19:14:07,2026-01-06 19:16:27,Żelazna / Pereca,Grochowa / Jemiołowa,2
+319516051,591777,2026-01-06 19:15:19,2026-01-06 19:28:29,Drzewieckiego / Dedala,Legnicka / Zachodnia ,13
+319516056,590002,2026-01-06 19:15:21,2026-01-06 19:22:09,Aleja Kromera,Krzywoustego / Korona,7
+319516172,590478,2026-01-06 19:17:14,2026-01-06 19:26:02,Poza stacją,al. Armii Krajowej / Bardzka,9
+319516369,592123,2026-01-06 19:20:51,2026-01-06 20:00:45,Popowicka / Rysia,Awicenny,40
+319516398,592920,2026-01-06 19:21:16,2026-01-06 19:21:36,Plac Kościuszki (Renoma),Plac Kościuszki (Renoma),0
+319516408,592212,2026-01-06 19:21:28,2026-01-06 19:29:40,Pomorska/Cybulskiego,Sienkiewicza / Wyszyńskiego,8
+319516468,592920,2026-01-06 19:22:20,2026-01-06 19:22:31,Plac Kościuszki (Renoma),Plac Kościuszki (Renoma),0
+319516562,590425,2026-01-06 19:23:58,2026-01-06 19:27:48,Zwycięska / Agrestowa,Ułańska,4
+319516631,590535,2026-01-06 19:25:11,2026-01-06 19:30:17,Krucza / Mielecka / Stalowa,Grabiszyńska / Magazynierska (Corte Verona),5
+319516904,590012,2026-01-06 19:30:13,2026-01-06 19:54:24,Gazowa / Międzyleska,pl. Orląt Lwowskich,24
+319516921,590367,2026-01-06 19:30:37,2026-01-06 20:16:35,Grota-Roweckiego / Parafialna,Grota-Roweckiego / Parafialna,46
+319517015,592236,2026-01-06 19:32:43,2026-01-06 19:49:45,Żeromskiego / Kluczborska,Rynek,17
+319517159,590304,2026-01-06 19:35:16,2026-01-06 19:48:27,Przyjaźni / Karkonoska,Kutrzeby / Hubala,13
+319517214,590806,2026-01-06 19:36:20,2026-01-06 19:44:50,Wita Stwosza / Szewska,Legnicka / Młodych Techników,9
+319517241,591350,2026-01-06 19:36:48,2026-01-06 19:45:19,Kozanowska / Pilczycka,Bajana / Szybowcowa,9
+319517344,590805,2026-01-06 19:38:28,2026-01-06 19:55:36,Skarbowców / Wietrzna,Szczęśliwa (Sky Tower),17
+319517522,591863,2026-01-06 19:41:41,2026-01-06 20:04:57,Nyska / Piękna,Nyska / Piękna,23
+319517636,590983,2026-01-06 19:43:54,2026-01-06 19:47:57,Borowska / Kamienna (Aquapark),Komandorska / Kamienna,4
+319517666,592264,2026-01-06 19:44:17,2026-01-06 19:58:26,"Dworzec Główny, południe",Grochowa / Jemiołowa,14
+319517820,591062,2026-01-06 19:47:15,2026-01-06 19:47:55,"Dworzec Główny, południe","Dworzec Główny, południe",1
+319517869,592116,2026-01-06 19:48:11,2026-01-06 19:58:31,"Dworzec Główny, południe",Bardzka / Piękna,10
+319517936,590421,2026-01-06 19:49:35,2026-01-06 19:56:19,Borowska / Kamienna (Aquapark),Komandorska / Kamienna,7
+319518111,590662,2026-01-06 19:53:11,2026-01-06 20:02:09,Jagiełły / Dmowskiego ,Poza stacją,9
+319518190,590633,2026-01-06 19:55:03,2026-01-06 20:00:56,Kutrzeby / Hubala,Poza stacją,6
+319518720,590399,2026-01-06 20:05:16,2026-01-06 20:09:45,pl. Orląt Lwowskich,Plac Jana Pawła II (Akademia Muzyczna),4
+319518845,591825,2026-01-06 20:07:39,2026-01-06 20:11:05,Zwycięska / Agrestowa,Ułańska,3
+319518912,591047,2026-01-06 20:09:11,2026-01-06 20:24:13,al. Armii Krajowej / Borowska,Piaskowa / św. Ducha,15
+319518970,591139,2026-01-06 20:10:10,2026-01-06 20:20:48,Dworzec Główny ,Plac Świętego Macieja / Trzebnicka,11
+319519254,592754,2026-01-06 20:16:34,2026-01-06 20:30:23,Dyrekcyjna / Borowska (Wroclavia),Ślężna / Skierniewicka,14
+319519325,591110,2026-01-06 20:18:08,2026-01-06 20:18:36,Pereca / Grabiszyńska,Pereca / Grabiszyńska,0
+319519354,591330,2026-01-06 20:18:49,2026-01-06 20:29:16,Pereca / Grabiszyńska,Kazimierza Wielkiego (Helios),10
+319519551,591259,2026-01-06 20:23:17,2026-01-06 20:42:09,al. Kochanowskiego / Kopernika,Partyzantów / Okrzei,19
+319519662,592650,2026-01-06 20:25:45,2026-01-06 20:32:19,Pereca / Grabiszyńska,Kazimierza Wielkiego (Helios),7
+319519665,592410,2026-01-06 20:25:50,2026-01-06 20:29:05,Graniczna / Strzegomska,Strzegomska / Rogowska ,3
+319519799,592937,2026-01-06 20:28:57,2026-01-06 21:25:42,Sienkiewicza / Piastowska,Sienkiewicza / Piastowska,57
+319520142,590825,2026-01-06 20:37:46,2026-01-06 20:52:15,Grochowa / Jemiołowa,Rynek,14
+319520188,590119,2026-01-06 20:38:39,2026-01-06 20:51:28,Traugutta / Kościuszki,Kamienna / Tomaszowska,13
+319520322,590525,2026-01-06 20:41:57,2026-01-06 20:56:07,Krzywoustego / Korona,Aleja Kromera,14
+319520358,590513,2026-01-06 20:42:42,2026-01-06 20:48:43,Kozanowska/Pałucka,Kozanowska / Pilczycka,6
+319520518,592053,2026-01-06 20:47:04,2026-01-06 20:52:13,Gajowicka,Racławicka / Rymarska,5
+319520543,591598,2026-01-06 20:47:38,2026-01-06 21:17:06,Okulickiego,Okulickiego,29
+319520552,592236,2026-01-06 20:47:51,2026-01-06 20:48:03,Rynek,Rynek,0
+319520667,590468,2026-01-06 20:50:36,2026-01-06 20:59:29,Skarbowców / Wietrzna,Skarbowców / Wietrzna,9
+319520670,592236,2026-01-06 20:50:41,2026-01-06 21:08:55,Rynek,Żeromskiego / Kluczborska,18
+319520764,590825,2026-01-06 20:53:23,2026-01-06 21:02:05,Rynek,Plac Świętego Macieja / Trzebnicka,9
+319520776,592336,2026-01-06 20:53:36,2026-01-06 21:07:20,Rynek,Grochowa / Jemiołowa,14
+319520856,592426,2026-01-06 20:55:55,2026-01-06 21:03:54,Aleja Hallera / Mielecka,Hallera / Odkrywców,8
+319520862,591131,2026-01-06 20:56:05,2026-01-06 21:03:55,Aleja Hallera / Mielecka,Hallera / Odkrywców,8
+319520864,590480,2026-01-06 20:56:10,2026-01-06 21:15:19,Borowska / Kamienna (Aquapark),Jagodzińska / Buforowa,19
+319520914,591062,2026-01-06 20:57:34,2026-01-06 20:58:12,"Dworzec Główny, południe","Dworzec Główny, południe",1
+319520947,591284,2026-01-06 20:58:23,2026-01-06 21:03:49,"Dworzec Główny, południe",Hubska / Prudnicka,5
+319521028,591274,2026-01-06 21:00:20,2026-01-06 21:06:10,Pomorska/Cybulskiego,Drobnera / Plac Bema,6
+319521236,592393,2026-01-06 21:05:47,2026-01-06 21:11:05,al. Armii Krajowej / Bardzka,Kamienna / Tomaszowska,5
+319521304,592706,2026-01-06 21:07:35,2026-01-06 21:17:34,Świeradowska (Ferio Gaj ),Ślężna / Aleja Wiśniowa,10
+319521308,590654,2026-01-06 21:07:39,2026-01-06 21:14:36,Kamienna / Tomaszowska,Ślężna / Aleja Wiśniowa,7
+319521388,591624,2026-01-06 21:09:34,2026-01-06 21:23:46,Dworzec Główny ,Grabiszyńska / Stalowa,14
+319521432,590852,2026-01-06 21:10:36,2026-01-06 21:21:47,Pereca / Grabiszyńska,Rynek,11
+319521474,592264,2026-01-06 21:11:31,2026-01-06 21:23:10,Grochowa / Jemiołowa,Ślężna / Kamienna (Uniw. Ekonomiczny),12
+319521614,590456,2026-01-06 21:15:26,2026-01-06 22:01:01,Krucza / Mielecka / Stalowa,Krucza / Mielecka / Stalowa,46
+319521712,592706,2026-01-06 21:18:07,2026-01-06 21:31:01,Ślężna / Aleja Wiśniowa,Grabiszyńska / Stalowa,13
+319521734,591363,2026-01-06 21:18:35,2026-01-06 21:29:46,Poza stacją,Borowska / Kamienna (Aquapark),11
+319521842,592779,2026-01-06 21:22:17,2026-01-06 21:22:29,Rynek,Rynek,0
+319521868,592114,2026-01-06 21:22:57,2026-01-06 21:30:43,Rynek,pl. Staszica,8
+319522163,591363,2026-01-06 21:31:11,2026-01-06 21:44:32,Borowska / Kamienna (Aquapark),Żelazna / Pereca,13
+319522272,592319,2026-01-06 21:33:46,2026-01-06 21:47:22,Legnicka / Młodych Techników,Plac Jana Pawła II (Akademia Muzyczna),14
+319522495,592473,2026-01-06 21:40:01,2026-01-06 21:47:54,Dyrekcyjna / Borowska (Wroclavia),Borowska / Kamienna (Aquapark),8
+319522502,591725,2026-01-06 21:40:09,2026-01-06 22:04:42,Świdnicka / Piłsudskiego (Hotel Scandic),Świdnicka / Piłsudskiego (Hotel Scandic),25
+319522685,592393,2026-01-06 21:45:15,2026-01-06 21:49:44,Kamienna / Tomaszowska,Ślężna / Kamienna (Uniw. Ekonomiczny),4
+319522789,591219,2026-01-06 21:48:23,2026-01-06 22:08:18,Borowska / Kamienna (Aquapark),Opolska / pętla tramwajowa,20
+319522891,592840,2026-01-06 21:51:49,2026-01-06 22:00:53,Plac Uniwersytecki (UWr),Młodych Techników,9
+319522985,591613,2026-01-06 21:54:31,2026-01-06 22:13:22,Plac Legionów,Krakowska / Leroy Merlin,19
+319523225,591855,2026-01-06 22:01:39,2026-01-06 22:02:20,Komandorska / Sanocka,Komandorska / Sanocka,1
+319523266,590166,2026-01-06 22:02:39,2026-01-06 22:06:11,Komandorska / Sanocka,Komandorska / Kamienna,4
+319523374,590623,2026-01-06 22:06:23,2026-01-06 22:12:51,Legnicka / Wejherowska,Legnicka / Zachodnia ,6
+319523645,591192,2026-01-06 22:15:52,2026-01-06 22:25:14,Grabiszyńska / Aleja Hallera,Grochowa / Jemiołowa,9
+319523707,592584,2026-01-06 22:18:17,2026-01-06 22:28:22,Krucza / Mielecka / Stalowa,Żelazna / Pereca,10
+319523970,591714,2026-01-06 22:28:05,2026-01-06 22:38:46,Powstańców Śląskich/Orla,Wałbrzyska - pętla tramwajowa,11
+319524080,591835,2026-01-06 22:32:06,2026-01-06 22:41:10,"Dworzec Główny, południe",Nyska / Piękna,9
+319524118,591811,2026-01-06 22:33:16,2026-01-06 22:33:39,Reymonta / Kleczkowska,Reymonta / Kleczkowska,0
+319524134,591497,2026-01-06 22:33:57,2026-01-06 22:38:21,Reymonta / Kleczkowska,Poza stacją,4
+319524422,592799,2026-01-06 22:44:49,2026-01-06 22:45:10,Sienkiewicza / Piastowska,Sienkiewicza / Piastowska,0
+319524440,592937,2026-01-06 22:45:25,2026-01-06 22:48:05,Sienkiewicza / Piastowska,Rondo Reagana,3
+319524514,592215,2026-01-06 22:48:09,2026-01-06 22:53:42,Kozanowska / Pilczycka,Kozanowska/Pałucka,6
+319524590,592053,2026-01-06 22:51:09,2026-01-06 23:01:29,Racławicka / Rymarska,Plac Powstańców Śląskich,10
+319524620,592243,2026-01-06 22:52:27,2026-01-06 22:56:53,Berenta / Kasprowicza,Akademia Wojsk Lądowych,4
+319524717,591835,2026-01-06 22:56:25,2026-01-06 23:13:13,Nyska / Piękna,Nyska / Piękna,17
+319524719,592080,2026-01-06 22:56:34,2026-01-06 22:57:26,Krzycka / Aleja Karkonoska (Park Południowy),Krzycka / Aleja Karkonoska (Park Południowy),1
+319524747,590516,2026-01-06 22:57:45,2026-01-06 23:07:01,Krzycka / Aleja Karkonoska (Park Południowy),Wałbrzyska - pętla tramwajowa,9
+319524820,591212,2026-01-06 23:00:40,2026-01-06 23:03:27,Kościuszki / Pułaskiego,Kościuszki / Komuny Paryskiej / Zgodna,3
+319524878,592737,2026-01-06 23:02:57,2026-01-06 23:17:35,"Wrocław Leśnica, stacja kolejowa",Poza stacją,15
+319524894,592707,2026-01-06 23:03:52,2026-01-06 23:19:24,Zachodnia / Poznańska,Grabiszyńska / Stalowa,16
+319524908,592236,2026-01-06 23:04:52,2026-01-06 23:14:57,Żeromskiego / Kluczborska,Szewska / Kazimierza Wielkiego ,10
+319525143,592264,2026-01-06 23:15:32,2026-01-06 23:38:59,Ślężna / Kamienna (Uniw. Ekonomiczny),Zaporoska / Grabiszyńska,23
+319525144,592236,2026-01-06 23:15:41,2026-01-06 23:25:39,Szewska / Kazimierza Wielkiego ,Zaporoska / Grabiszyńska,10
+319525186,591204,2026-01-06 23:17:32,2026-01-06 23:21:05,pl. Powstańców Wielkopolskich,Kraszewskiego / Trzebnicka,4
+319525301,591518,2026-01-06 23:23:10,2026-01-06 23:29:45,Kraszewskiego / Trzebnicka,Obornicka / Bałtycka,7
+319525304,591242,2026-01-06 23:23:17,2026-01-06 23:39:44,Kazimierza Wielkiego (Helios),Żeromskiego / Daszyńskiego,16
+319525419,592829,2026-01-06 23:30:38,2026-01-06 23:31:02,Plac Dominikański (Galeria Dominikańska),Plac Dominikański (Galeria Dominikańska),0
+319525435,591274,2026-01-06 23:31:09,2026-01-06 23:48:29,Drobnera / Plac Bema,Wróblewskiego (Teki),17
+319525442,590760,2026-01-06 23:31:37,2026-01-06 23:39:48,Plac Dominikański (Galeria Dominikańska),Traugutta / Kościuszki,8
+319525445,590653,2026-01-06 23:31:42,2026-01-06 23:40:49,Rondo Reagana,Nowowiejska / Wyszyńskiego,9
+319525597,591714,2026-01-06 23:40:27,2026-01-06 23:54:34,Wałbrzyska - pętla tramwajowa,Gajowicka,14
+319525710,590126,2026-01-06 23:47:15,2026-01-06 23:58:41,"Dworzec Główny, południe",Poza stacją,11

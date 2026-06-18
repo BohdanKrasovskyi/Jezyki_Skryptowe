@@ -16,6 +16,7 @@ def pierwiastek(x, epsilon):
         print("ERROR: Cannot square the negative number!")
         return None
 
+
     def helper(y):
         return y if abs(y ** 2 - x) < epsilon else helper((y + x/y) / 2)
     return helper(1.0)
