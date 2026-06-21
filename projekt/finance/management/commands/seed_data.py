@@ -43,6 +43,10 @@ class Command(BaseCommand):
             defaults={'account_type': 'cash', 'balance': Decimal('500'), 'currency': 'PLN'}
         )
 
+        if Transaction.objects.filter(account=checking).exists():
+            self.stdout.write(self.style.WARNING('Transakcje demo już istnieją — pomijam seedowanie.'))
+            return
+
         self.stdout.write('Tworze transakcje...')
         today = date.today()
         balance_delta = Decimal('0')
