@@ -90,34 +90,3 @@ class BankImport(models.Model):
 
     def __str__(self):
         return f'{self.file_name} ({self.imported_at:%Y-%m-%d})'
-
-
-class LinkedBankAccount(models.Model):
-    PENDING = 'pending'
-    LINKED = 'linked'
-    ERROR = 'error'
-    STATUS_CHOICES = [
-        (PENDING, 'Oczekuje na autoryzację'),
-        (LINKED, 'Połączone'),
-        (ERROR, 'Błąd'),
-    ]
-
-    account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='linked_banks')
-    institution_id = models.CharField(max_length=100)
-    institution_name = models.CharField(max_length=200)
-    institution_logo = models.URLField(blank=True)
-    requisition_id = models.CharField(max_length=100, unique=True)
-    # UUID sent as ?ref= in OAuth callback — lets us look up this record
-    reference = models.CharField(max_length=36, unique=True)
-    gocardless_account_id = models.CharField(max_length=100, blank=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING)
-    last_synced = models.DateTimeField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-created_at']
-        verbose_name = 'Podlaczone konto'
-        verbose_name_plural = 'Podlaczone konta'
-
-    def __str__(self):
-        return f'{self.institution_name} → {self.account.name} [{self.get_status_display()}]'

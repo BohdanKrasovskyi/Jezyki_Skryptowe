@@ -7,5 +7,5 @@ services:
       - ./db.sqlite3:/app/db.sqlite3
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-dev-only-insecure-key-change-in-production}
-      - GOCARDLESS_SECRET_ID=${GOCARDLESS_SECRET_ID:-}
-      - GOCARDLESS_SECRET_KEY=${GOCARDLESS_SECRET_KEY:-}
+      - PLAID_CLIENT_ID=${PLAID_CLIENT_ID:-}
+      - PLAID_SECRET=${PLAID_SECRET:-}

@@ -99,15 +99,6 @@ class PlaidImportForm(forms.Form):
     )
 
 
-class OBPImportForm(forms.Form):
-    account = forms.ModelChoiceField(
-        queryset=Account.objects.all(),
-        label='Konto docelowe',
-        widget=forms.Select(attrs={'class': 'form-select'}),
-        error_messages={'required': 'Wybierz konto docelowe.'},
-    )
-
-
 class BankImportForm(forms.Form):
     account = forms.ModelChoiceField(
         queryset=Account.objects.all(),
@@ -154,24 +145,6 @@ class ReportFilterForm(forms.Form):
         required=False,
         widget=forms.Select(attrs={'class': 'form-select'}),
     )
-
-
-class BankLinkForm(forms.Form):
-    institution_id = forms.CharField(widget=forms.HiddenInput(), max_length=100)
-    institution_name = forms.CharField(widget=forms.HiddenInput(), max_length=200)
-    institution_logo = forms.CharField(required=False, widget=forms.HiddenInput(), max_length=500)
-    account = forms.ModelChoiceField(
-        queryset=Account.objects.all(),
-        label='Konto lokalne',
-        widget=forms.Select(attrs={'class': 'form-select'}),
-        error_messages={'required': 'Wybierz konto lokalne.'},
-    )
-
-    def clean_institution_id(self):
-        val = self.cleaned_data.get('institution_id', '').strip()
-        if not val:
-            raise ValidationError('Brak identyfikatora instytucji.')
-        return val
 
 
 class TransactionFilterForm(forms.Form):

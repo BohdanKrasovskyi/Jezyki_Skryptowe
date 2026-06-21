@@ -1,7 +1,5 @@
 import csv
-import io
 import logging
-import uuid
 from datetime import date
 from decimal import Decimal
 
@@ -13,12 +11,12 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
-from .banking_api import GoCardlessError, GoCardlessNetworkError, OBPError, OBPNetworkError, PlaidError, PlaidNetworkError
+from .banking_api import PlaidError, PlaidNetworkError
 from .forms import (
-    AccountForm, BankImportForm, BankLinkForm,
-    CategoryForm, OBPImportForm, PlaidImportForm, ReportFilterForm, TransactionFilterForm, TransactionForm,
+    AccountForm, BankImportForm,
+    CategoryForm, PlaidImportForm, ReportFilterForm, TransactionFilterForm, TransactionForm,
 )
-from .models import BankImport, LinkedBankAccount, Transaction
+from .models import BankImport, Transaction
 from .repositories import AccountRepository, CategoryRepository, TransactionRepository
 from .services import FinanceService
 
@@ -161,7 +159,7 @@ def export_csv(request):
 
     response = HttpResponse(content_type='text/csv; charset=utf-8')
     response['Content-Disposition'] = 'attachment; filename="transakcje.csv"'
-    response.write('﻿')  # UTF-8 BOM for Excel compatibility
+    response.write('﻿')
 
     writer = csv.writer(response)
     writer.writerow(['Data', 'Typ', 'Kwota', 'Waluta', 'Kategoria', 'Konto', 'Opis'])
@@ -317,10 +315,11 @@ def reports_chart_data(request):
 
 # ── banking ───────────────────────────────────────────────────────────────
 
+# ── banking ───────────────────────────────────────────────────────────────
+
 def banking(request):
     csv_form = BankImportForm(request.POST or None, request.FILES or None)
     import_history = BankImport.objects.select_related('account').all()[:20]
-    linked_accounts = LinkedBankAccount.objects.select_related('account').all()
 
     if request.method == 'POST' and csv_form.is_valid():
         csv_file = request.FILES.get('csv_file')
@@ -342,149 +341,7 @@ def banking(request):
         'csv_form': csv_form,
         'plaid_form': PlaidImportForm(),
         'import_history': import_history,
-        'linked_accounts': linked_accounts,
-        'link_form': BankLinkForm(),
     })
-
-
-def banking_institutions(request):
-    country = request.GET.get('country', 'pl')
-    if len(country) != 2 or not country.isalpha():
-        country = 'pl'
-    try:
-        from .banking_api import get_client
-        client = get_client()
-        data = client.get_institutions(country)
-        return JsonResponse({'institutions': data})
-    except ValueError as exc:
-        return JsonResponse({'error': str(exc)}, status=503)
-    except GoCardlessNetworkError as exc:
-        return JsonResponse({'error': str(exc)}, status=503)
-    except GoCardlessError as exc:
-        return JsonResponse({'error': str(exc)}, status=502)
-    except Exception as exc:
-        logger.exception('banking_institutions failed')
-        return JsonResponse({'error': 'Wewnętrzny błąd serwera.'}, status=500)
-
-
-def banking_link_start(request):
-    if request.method != 'POST':
-        return redirect('banking')
-    form = BankLinkForm(request.POST)
-    if not form.is_valid():
-        for field_errors in form.errors.values():
-            for error in field_errors:
-                messages.error(request, error)
-        return redirect('banking')
-    try:
-        from .banking_api import get_client
-        client = get_client()
-    except ValueError as exc:
-        messages.error(request, str(exc))
-        return redirect('banking')
-    institution_id = form.cleaned_data['institution_id']
-    institution_name = form.cleaned_data['institution_name']
-    institution_logo = form.cleaned_data.get('institution_logo', '')
-    local_account = form.cleaned_data['account']
-    reference = str(uuid.uuid4())
-    redirect_uri = request.build_absolute_uri('/banking/callback/')
-    try:
-        req_data = client.create_requisition(institution_id, redirect_uri, reference)
-    except GoCardlessNetworkError as exc:
-        messages.error(request, f'Brak połączenia z GoCardless: {exc.detail}')
-        return redirect('banking')
-    except GoCardlessError as exc:
-        detail = exc.detail
-        if isinstance(detail, dict):
-            detail = detail.get('detail', str(detail))
-        messages.error(request, f'Błąd GoCardless: {detail}')
-        return redirect('banking')
-    except Exception as exc:
-        logger.exception('create_requisition failed')
-        messages.error(request, 'Nieoczekiwany błąd podczas łączenia z bankiem.')
-        return redirect('banking')
-    LinkedBankAccount.objects.create(
-        account=local_account,
-        institution_id=institution_id,
-        institution_name=institution_name[:200],
-        institution_logo=institution_logo[:500],
-        requisition_id=req_data['id'],
-        reference=reference,
-        status=LinkedBankAccount.PENDING,
-    )
-    return redirect(req_data['link'])
-
-
-def banking_callback(request):
-    reference = request.GET.get('ref', '').strip()
-    if not reference:
-        messages.error(request, 'Brakujący parametr autoryzacji.')
-        return redirect('banking')
-    linked = get_object_or_404(LinkedBankAccount, reference=reference)
-    try:
-        from .banking_api import get_client
-        client = get_client()
-        req_data = client.get_requisition(linked.requisition_id)
-    except (GoCardlessError, GoCardlessNetworkError, ValueError) as exc:
-        linked.status = LinkedBankAccount.ERROR
-        linked.save(update_fields=['status'])
-        messages.error(request, f'Błąd autoryzacji: {exc}')
-        return redirect('banking')
-    except Exception as exc:
-        logger.exception('banking_callback failed')
-        linked.status = LinkedBankAccount.ERROR
-        linked.save(update_fields=['status'])
-        messages.error(request, 'Nieoczekiwany błąd podczas autoryzacji.')
-        return redirect('banking')
-    gc_accounts = req_data.get('accounts', [])
-    if not gc_accounts:
-        linked.status = LinkedBankAccount.ERROR
-        linked.save(update_fields=['status'])
-        messages.warning(request, 'Bank nie zwrócił żadnych kont. Spróbuj ponownie.')
-        return redirect('banking')
-    linked.gocardless_account_id = gc_accounts[0]
-    linked.status = LinkedBankAccount.LINKED
-    linked.save(update_fields=['gocardless_account_id', 'status'])
-    messages.success(request, f'Konto "{linked.institution_name}" zostało połączone!')
-    return redirect('banking')
-
-
-@require_POST
-def banking_sync(request, pk):
-    linked = get_object_or_404(LinkedBankAccount, pk=pk, status=LinkedBankAccount.LINKED)
-    try:
-        count = service.sync_linked_account(linked)
-        messages.success(request, f'Zsynchronizowano {count} nowych transakcji z {linked.institution_name}.')
-    except GoCardlessNetworkError as exc:
-        messages.error(request, f'Brak połączenia z GoCardless: {exc.detail}')
-    except (GoCardlessError, ValueError) as exc:
-        messages.error(request, f'Błąd synchronizacji: {exc}')
-    except Exception as exc:
-        logger.exception('banking_sync failed')
-        messages.error(request, f'Nieoczekiwany błąd synchronizacji: {exc}')
-    return redirect('banking')
-
-
-@require_POST
-def banking_unlink(request, pk):
-    linked = get_object_or_404(LinkedBankAccount, pk=pk)
-    try:
-        from .banking_api import get_client
-        client = get_client()
-        client.delete_requisition(linked.requisition_id)
-    except Exception:
-        pass
-    linked.delete()
-    messages.success(request, 'Połączenie bankowe zostało usunięte.')
-    return redirect('banking')
-
-
-def banking_demo_auth(request):
-    reference = request.GET.get('ref', '').strip()
-    if not reference:
-        messages.error(request, 'Brakujący parametr demo.')
-        return redirect('banking')
-    return render(request, 'finance/banking_demo_auth.html', {'reference': reference})
 
 
 @require_POST
@@ -508,32 +365,5 @@ def banking_plaid_import(request):
         messages.error(request, str(exc))
     except Exception as exc:
         logger.exception('Plaid import failed')
-        messages.error(request, f'Nieoczekiwany błąd: {exc}')
-    return redirect('banking')
-
-
-@require_POST
-def banking_obp_import(request):
-    form = OBPImportForm(request.POST)
-    if not form.is_valid():
-        for errs in form.errors.values():
-            for err in errs:
-                messages.error(request, err)
-        return redirect('banking')
-    account_id = form.cleaned_data['account'].id
-    try:
-        count, n_accounts = service.import_from_obp(account_id)
-        if count:
-            messages.success(request, f'Pobrano {count} nowych transakcji z Open Bank Project ({n_accounts} kont znalezionych).')
-        elif n_accounts:
-            messages.info(request, f'Połączono z OBP API ✓ — znaleziono {n_accounts} kont, brak transakcji historycznych.')
-        else:
-            messages.warning(request, 'Brak kont w OBP — sprawdź dane logowania.')
-    except (OBPError, OBPNetworkError) as exc:
-        messages.error(request, f'Błąd OBP API: {exc}')
-    except ValueError as exc:
-        messages.error(request, str(exc))
-    except Exception as exc:
-        logger.exception('OBP import failed')
         messages.error(request, f'Nieoczekiwany błąd: {exc}')
     return redirect('banking')

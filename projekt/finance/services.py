@@ -1,12 +1,12 @@
 import csv
 import io
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 from decimal import Decimal, InvalidOperation
 
 from django.db import transaction as db_transaction
 from django.utils import timezone
 
-from .models import Transaction, Account, BankImport, LinkedBankAccount
+from .models import Transaction, Account, BankImport
 from .repositories import TransactionRepository, AccountRepository, BankImportRepository
 
 _CSV_ENCODINGS = ('utf-8-sig', 'utf-8', 'cp1250', 'latin-1')
@@ -202,60 +202,6 @@ class FinanceService:
             'total_expense': self.tx_repo.total_expense(),
         }
 
-    # ── Open Bank Project sync ────────────────────────────────────────
-
-    def import_from_obp(self, account_id: int):
-        from .banking_api import get_obp_client
-        try:
-            account = self.acc_repo.get_by_id(account_id)
-        except Account.DoesNotExist:
-            raise ValueError('Wybrane konto nie istnieje.')
-        client = get_obp_client()
-        obp_accounts = client.get_accounts()
-        all_raw: list[dict] = []
-        for obp_acc in obp_accounts:
-            bank_id = obp_acc.get('bank_id', '')
-            acc_id = obp_acc.get('id', '')
-            if bank_id and acc_id:
-                all_raw.extend(client.get_transactions(bank_id, acc_id))
-        ext_ids = [t.get('id', '') for t in all_raw if t.get('id')]
-        existing = set(
-            Transaction.objects.filter(account=account, external_id__in=ext_ids)
-            .values_list('external_id', flat=True)
-        ) if ext_ids else set()
-        new_txs: list[Transaction] = []
-        balance_delta = Decimal('0.00')
-        for raw in all_raw:
-            ext_id = str(raw.get('id', ''))
-            if ext_id and ext_id in existing:
-                continue
-            details = raw.get('details', {}) if isinstance(raw.get('details'), dict) else {}
-            value = details.get('value', {}) if isinstance(details.get('value'), dict) else {}
-            try:
-                raw_amount = Decimal(str(value.get('amount', '0')))
-            except (InvalidOperation, TypeError):
-                continue
-            tx_type = Transaction.INCOME if raw_amount >= 0 else Transaction.EXPENSE
-            amount = abs(raw_amount)
-            description = str(details.get('description', '') or '')[:255]
-            posted = details.get('posted', '') or details.get('completed', '') or ''
-            try:
-                tx_date = datetime.strptime(str(posted)[:10], '%Y-%m-%d').date()
-            except (ValueError, TypeError):
-                tx_date = date.today()
-            new_txs.append(Transaction(
-                amount=amount, transaction_type=tx_type, account=account,
-                description=description, date=tx_date, is_imported=True, external_id=ext_id,
-            ))
-            balance_delta += amount if tx_type == Transaction.INCOME else -amount
-        if new_txs:
-            with db_transaction.atomic():
-                self.tx_repo.bulk_create(new_txs)
-                acc_obj = Account.objects.select_for_update().get(pk=account_id)
-                acc_obj.balance += balance_delta
-                acc_obj.save(update_fields=['balance'])
-        return len(new_txs), len(obp_accounts)
-
     # ── Plaid Sandbox sync ────────────────────────────────────────────
 
     def import_from_plaid(self, account_id: int) -> int:
@@ -300,62 +246,4 @@ class FinanceService:
                 acc_obj = Account.objects.select_for_update().get(pk=account_id)
                 acc_obj.balance += balance_delta
                 acc_obj.save(update_fields=['balance'])
-        return len(new_txs)
-
-    # ── GoCardless sync ───────────────────────────────────────────────
-
-    def sync_linked_account(self, linked: LinkedBankAccount) -> int:
-        from .banking_api import get_client
-        client = get_client()
-        date_from = (
-            linked.last_synced.date() - timedelta(days=1)
-            if linked.last_synced
-            else date.today() - timedelta(days=90)
-        )
-        raw = client.get_account_transactions(linked.gocardless_account_id, date_from=date_from)
-        booked = raw.get('transactions', {}).get('booked', [])
-        if not isinstance(booked, list):
-            booked = []
-        candidate_ids = [t.get('transactionId', '') for t in booked if t.get('transactionId')]
-        existing_ids = set(
-            Transaction.objects.filter(account=linked.account, external_id__in=candidate_ids)
-            .values_list('external_id', flat=True)
-        ) if candidate_ids else set()
-        new_txs = []
-        balance_delta = Decimal('0.00')
-        for raw_tx in booked:
-            if not isinstance(raw_tx, dict):
-                continue
-            ext_id = str(raw_tx.get('transactionId') or '')
-            if ext_id and ext_id in existing_ids:
-                continue
-            try:
-                raw_amount = Decimal(str(raw_tx['transactionAmount']['amount']))
-            except (KeyError, InvalidOperation, TypeError):
-                continue
-            tx_type = Transaction.INCOME if raw_amount >= 0 else Transaction.EXPENSE
-            amount = abs(raw_amount)
-            description = (
-                raw_tx.get('remittanceInformationUnstructured')
-                or raw_tx.get('remittanceInformationStructured')
-                or raw_tx.get('creditorName') or raw_tx.get('debtorName') or ''
-            )
-            tx_date_str = raw_tx.get('bookingDate') or raw_tx.get('valueDate') or ''
-            try:
-                tx_date = datetime.strptime(str(tx_date_str), '%Y-%m-%d').date()
-            except ValueError:
-                tx_date = date.today()
-            new_txs.append(Transaction(
-                amount=amount, transaction_type=tx_type, account=linked.account,
-                description=str(description)[:255], date=tx_date, is_imported=True, external_id=ext_id,
-            ))
-            balance_delta += amount if tx_type == Transaction.INCOME else -amount
-        if new_txs:
-            with db_transaction.atomic():
-                self.tx_repo.bulk_create(new_txs)
-                account = Account.objects.select_for_update().get(pk=linked.account_id)
-                account.balance += balance_delta
-                account.save(update_fields=['balance'])
-        linked.last_synced = timezone.now()
-        linked.save(update_fields=['last_synced'])
         return len(new_txs)

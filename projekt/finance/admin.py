@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Transaction, Category, Account, BankImport, LinkedBankAccount
+from .models import Transaction, Category, Account, BankImport
 
 
 @admin.register(Category)
@@ -25,10 +25,3 @@ class TransactionAdmin(admin.ModelAdmin):
 class BankImportAdmin(admin.ModelAdmin):
     list_display = ['file_name', 'account', 'imported_at', 'records_count']
     readonly_fields = ['imported_at']
-
-
-@admin.register(LinkedBankAccount)
-class LinkedBankAccountAdmin(admin.ModelAdmin):
-    list_display = ['institution_name', 'account', 'status', 'last_synced', 'created_at']
-    list_filter = ['status']
-    readonly_fields = ['requisition_id', 'reference', 'gocardless_account_id', 'created_at', 'last_synced']

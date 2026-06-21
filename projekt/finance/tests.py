@@ -1,5 +1,4 @@
 """
-Comprehensive tests for FinanceApp.
 Run: python manage.py test finance
 """
 import io
@@ -9,7 +8,7 @@ from decimal import Decimal
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from .models import Account, Category, Transaction, LinkedBankAccount
+from .models import Account, Category, Transaction
 from .forms import (
     AccountForm, CategoryForm, TransactionForm,
     TransactionFilterForm, ReportFilterForm, BankImportForm,
@@ -235,7 +234,7 @@ class FinanceServiceTest(TestCase):
         self.assertEqual(self.account.balance, Decimal('500'))
 
     def test_delete_nonexistent_does_not_crash(self):
-        self.service.delete_transaction(99999)  # must not raise
+        self.service.delete_transaction(99999)
 
     def test_update_transaction_atomic(self):
         tx = make_transaction(self.account, '100', 'expense')

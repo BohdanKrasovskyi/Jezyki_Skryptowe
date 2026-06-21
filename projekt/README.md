@@ -12,7 +12,7 @@ Aplikacja webowa zbudowana w Django do śledzenia przychodów i wydatków, impor
 | Backend | Python 3.12, Django 6.0 |
 | Baza danych | SQLite (Django ORM) |
 | Frontend | Bootstrap 5, Chart.js, Bootstrap Icons |
-| API bankowe | Plaid Sandbox, GoCardless Bank Account Data |
+| API bankowe | Plaid Sandbox |
 | HTTP client | `urllib` (biblioteka standardowa — bez requests/httpx) |
 | Konteneryzacja | Docker, docker-compose |
 
@@ -56,17 +56,13 @@ Implementacje: `TransactionRepository`, `CategoryRepository`, `AccountRepository
 - `add_transaction` / `update_transaction` / `delete_transaction` — atomowa aktualizacja salda (`select_for_update`)
 - `import_csv` — parsowanie CSV z obsługą wielu kodowań i formatów dat
 - `import_from_plaid` — import transakcji z Plaid Sandbox z deduplikacją po `external_id`
-- `import_from_obp` — import z Open Bank Project (Direct Login)
-- `sync_linked_account` — synchronizacja z GoCardless Bank Account Data
 - `get_dashboard_data` / `get_report_data` — agregacje dla widoków
 
 ---
 
 ## Integracja z API bankowym
 
-### Plaid Sandbox
-
-Główna integracja testowa. Import wykonuje 3 rzeczywiste żądania HTTP do `sandbox.plaid.com`:
+Import wykonuje 3 rzeczywiste żądania HTTP do `sandbox.plaid.com`:
 
 ```
 POST /sandbox/public_token/create  →  public_token dla First Platypus Bank (ins_109508)
@@ -79,21 +75,6 @@ Konfiguracja w `settings.py` (lub zmienne środowiskowe):
 ```python
 PLAID_CLIENT_ID = 'twój-client-id'
 PLAID_SECRET    = 'twój-secret'
-```
-
-### GoCardless Bank Account Data
-
-Integracja z PSD2 Open Banking — ponad 2000 banków w Europie. Flow:
-
-```
-Wybór banku → POST /banking/link/ → redirect do banku → callback → sync transakcji
-```
-
-Tryb demo działa bez kluczy (fikcyjne dane). Prawdziwe klucze (bezpłatne):
-
-```python
-GOCARDLESS_SECRET_ID  = 'twój-secret-id'
-GOCARDLESS_SECRET_KEY = 'twój-secret-key'
 ```
 
 ### Import CSV
@@ -156,7 +137,6 @@ python manage.py test finance
 | `Account` | Konto bankowe (typ, saldo, waluta) |
 | `Category` | Kategoria transakcji z kolorem HEX |
 | `Transaction` | Transakcja z `external_id` do deduplikacji importów |
-| `LinkedBankAccount` | Połączone konto GoCardless (requisition, status, ostatnia sync) |
 | `BankImport` | Historia importów CSV (plik, data, liczba rekordów) |
 
 ---
@@ -178,7 +158,7 @@ projekt/
     ├── services.py        # logika biznesowa
     ├── views.py           # widoki HTTP
     ├── forms.py           # formularze z walidacją
-    ├── banking_api.py     # klienty API: GoCardless, Plaid, OBP
+    ├── banking_api.py     # klienty API: Plaid, NBP
     ├── urls.py            # routing URL
     ├── tests.py           # testy jednostkowe i integracyjne (89 testów)
     ├── admin.py
@@ -193,8 +173,7 @@ projekt/
         ├── category_form.html
         ├── accounts.html
         ├── reports.html
-        ├── banking.html
-        └── banking_demo_auth.html
+        └── banking.html
 ```
 
 ---
@@ -202,4 +181,4 @@ projekt/
 ## Autorzy
 
 - **Bohdan** — architektura aplikacji, modele, serwisy, repozytoria, widoki, formularze, testy
-- **Mateusz** — integracja API bankowych (Plaid, GoCardless, OBP), Docker, dokumentacja
+- **Mateusz** — integracja API bankowych (Plaid), Docker, dokumentacja
