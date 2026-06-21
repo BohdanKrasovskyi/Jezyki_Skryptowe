@@ -76,7 +76,7 @@ class Command(BaseCommand):
                     transaction_type='expense',
                     category=cats[cat_name],
                     account=checking,
-                    description=f'{cat_name} — {tx_date.strftime("%d.%m")}',
+                    description=cat_name,
                     date=tx_date,
                 ))
                 balance_delta -= amount
