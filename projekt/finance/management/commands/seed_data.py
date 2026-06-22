@@ -35,7 +35,7 @@ class Command(BaseCommand):
             defaults={'account_type': 'checking', 'balance': Decimal('0'), 'currency': 'PLN', 'bank_name': 'PKO BP'}
         )
         savings, _ = Account.objects.get_or_create(
-            name='mSzabki Oszczędnościowe',
+            name='mBank Oszczędnościowe',
             defaults={'account_type': 'savings', 'balance': Decimal('15000'), 'currency': 'PLN', 'bank_name': 'mBank'}
         )
         cash, _ = Account.objects.get_or_create(

@@ -54,7 +54,11 @@ class CategoryForm(forms.ModelForm):
             'category_type': forms.Select(attrs={'class': 'form-select'}),
             'color': forms.TextInput(attrs={'type': 'color', 'class': 'form-control form-control-color'}),
         }
-
+        labels = {
+            'name': 'Nazwa kategorii',
+            'category_type': 'Typ',
+            'color': 'Kolor',
+        }
     def clean_name(self):
         name = self.cleaned_data.get('name', '').strip()
         if not name:
@@ -73,6 +77,14 @@ class AccountForm(forms.ModelForm):
             'currency': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
             'bank_name': forms.TextInput(attrs={'class': 'form-control'}),
             'account_number': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'name': 'Nazwa konta',
+            'account_type': 'Typ konta',
+            'balance': 'Saldo początkowe',
+            'currency': 'Waluta',
+            'bank_name': 'Nazwa banku',
+            'account_number': 'Numer konta',
         }
 
     def clean_currency(self):
@@ -130,6 +142,7 @@ class ReportFilterForm(forms.Form):
         ('10', 'Październik'), ('11', 'Listopad'), ('12', 'Grudzień'),
     ]
     year = forms.IntegerField(
+        label='Rok',
         initial=_CURRENT_YEAR,
         min_value=2000,
         max_value=2100,
@@ -141,6 +154,7 @@ class ReportFilterForm(forms.Form):
         },
     )
     month = forms.ChoiceField(
+        label='Miesiąc',
         choices=MONTHS,
         required=False,
         widget=forms.Select(attrs={'class': 'form-select'}),
@@ -149,27 +163,32 @@ class ReportFilterForm(forms.Form):
 
 class TransactionFilterForm(forms.Form):
     transaction_type = forms.ChoiceField(
+        label='Typ transakcji',
         choices=[('', 'Wszystkie'), ('income', 'Przychody'), ('expense', 'Wydatki')],
         required=False,
         widget=forms.Select(attrs={'class': 'form-select'}),
     )
     category = forms.ModelChoiceField(
+        label='Kategoria',
         queryset=Category.objects.all(),
         required=False,
         empty_label='Wszystkie kategorie',
         widget=forms.Select(attrs={'class': 'form-select'}),
     )
     account = forms.ModelChoiceField(
+        label='Konto',
         queryset=Account.objects.all(),
         required=False,
         empty_label='Wszystkie konta',
         widget=forms.Select(attrs={'class': 'form-select'}),
     )
     date_from = forms.DateField(
+        label='Data początkowa',
         required=False,
         widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
     )
     date_to = forms.DateField(
+        label='Data końcowa',
         required=False,
         widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
     )
